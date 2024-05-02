@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('storage/images/title.jpeg') }}" type="image/png">
+    <title>Registrasi</title>
+    <link rel="icon" href="{{ asset('assets/img/kbt.jpeg') }}" type="image/png">
     <!-- Link to Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/registrasi.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/registrasi.css') }}">
 </head>
 
 <body>
     <div class="container2 mt-5">
-        <form id="registrationForm" action="{{route ('guest.registrasi')}}" method="post" onsubmit="return validateForm()">
+        <form id="registrationForm" action="{{route ('registrasi')}}" method="post" onsubmit="return validateForm()">
             @csrf
             <h2 class="mb-3" style="text-align: center;">Form Registrasi</h2>
             <div class="row">

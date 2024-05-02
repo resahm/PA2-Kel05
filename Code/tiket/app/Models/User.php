@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Traits\HasRoles; 
+use Illuminate\Http\Request; 
 
 class User extends Authenticatable
 {
-    use HasRoles,Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
@@ -21,7 +23,6 @@ class User extends Authenticatable
         'identity_number',
         'birthdate',
         'password',
-        'role',
     ];
 
     protected $hidden = [
@@ -40,7 +41,6 @@ class User extends Authenticatable
             'identity_number' => 'required|string',
             'birthdate' => 'required|date',
             'password' => 'required|string|min:8',
-            'role' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -55,27 +55,31 @@ class User extends Authenticatable
             'identity_number' => $data['identity_number'],
             'birthdate' => $data['birthdate'],
             'password' => Hash::make($data['password']),
-            'role' => $data['role'],
         ]);
     }
 
-    public function roles()
+    public function updateProfile(Request $request)
     {
-        return $this->belongsToMany(Role::class);
-    }
+        $user = Auth::user();
 
-    public function isAdmin()
-    {
-        return $this->hasRole('admin');
-    }
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone_number' => 'required|string|max:20',
+            'gender' => 'required|string|in:laki-laki,perempuan',
+            'identity_number' => 'required|string|max:255',
+            'birthdate' => 'required|date',
+        ]);
 
-    public function hasRole($role)
-    {
-        return $this->roles->contains('name', $role);
-    }
+        // Perbarui data pengguna
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phone_number');
+        $user->gender = $request->input('gender');
+        $user->identity_number = $request->input('identity_number');
+        $user->birthdate = $request->input('birthdate');
+        $user->save();
 
-    public function hasAnyRole($roles)
-    {
-        return $this->roles->whereIn('name', $roles)->isNotEmpty();
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
     }
 }

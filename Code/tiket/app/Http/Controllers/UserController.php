@@ -10,4 +10,16 @@ class UserController extends Controller
     {
         return view('users.tiket');
     }
+    public function pemesanan()
+    {
+        return view('users.pemesanan');
+    }
+    public function pembayaran()
+    {
+        return view('users.pembayaran');
+    }
+    public function history()
+    {
+        return view('users.history');
+    }
 }

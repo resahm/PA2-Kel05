@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Models\Admin;
 
 class LoginController extends Controller
@@ -22,24 +24,19 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // Jika berhasil login
-            $user = Auth::user();
-            if ($user->hasRole('admin')) {
-                return redirect()->intended('/admin/dashboard');
-            } else {
-                return redirect()->intended('/users/tiket');
-            }
+        // Login user atau admin berdasarkan guard yang sesuai
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('admin.dashboard'); // Redirect ke halaman dashboard admin
+        } elseif (Auth::guard('web')->attempt($credentials)) {
+            return redirect()->route('users.tiket');
         }
 
-        // Jika gagal login
         return back()->withErrors(['email' => 'Kombinasi email dan password tidak valid.']);
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
-
+        Auth::logout(); // Logout dari semua guard
         return redirect('/');
     }
 }
