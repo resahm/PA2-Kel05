@@ -1,0 +1,65 @@
+.navbar {
+    background-color: #ffffff; /* Keeps the navbar white for a clean look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 10px 0;
+}
+
+.navbar-brand img {
+    height: 70px; /* Adjusted to a more reasonable size */
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.nav-link {
+    color: #000000;
+    margin: 5px 10px; /* Adds a bit of spacing around links for better touch interaction */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #007bff; /* Bootstrap primary color for consistency */
+}
+
+/* Improves the dropdown menu appearance */
+.dropdown-menu {
+    border-radius: 0; /* Matches the more angular design language */
+}
+
+.ticket-info {
+    background-color: #f8f9fa; /* Light background for the ticket info area */
+    border: 1px solid #dee2e6; /* Subtle border */
+    border-radius: 4px; /* Soft rounded corners */
+    padding: 20px; /* Adequate padding around the content */
+    margin-top: 20px; /* Adds space between the navbar and the ticket info */
+}
+
+.ticket-info h2 {
+    color: #343a40; /* Dark color for headings for contrast */
+    margin-bottom: 15px; /* Space below the heading */
+}
+
+.ticket-info p {
+    color: #6c757d; /* Slightly lighter text for readability */
+    line-height: 1.5; /* Improves readability */
+}
+
+footer {
+    background-color: #343a40; /* Dark gray color for better contrast and modern look */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+    z-index: 2; /* Ensure footer is above other content if overlapping occurs */
+}
+
+footer p, footer a {
+    color: #ffffff;
+    text-decoration: none; /* Removes underline from links */
+}
+
+footer a:hover {
+    color: #dddddd; /* Slightly lighter gray on hover for a subtle effect */
+}

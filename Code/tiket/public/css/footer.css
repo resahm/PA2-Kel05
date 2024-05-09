@@ -1,0 +1,22 @@
+/* Footer */
+footer {
+    background-color: rgba(82, 82, 82, 0.8); /* Warna latar belakang footer */
+    color: white; /* Warna teks */
+    text-align: center; /* Posisi teks tengah */
+    padding: 2rem 0; /* Padding atas dan bawah */
+    position: relative; /* Tetap di posisi bawah layar */
+    bottom: 0; /* Menempel ke bawah */
+    width: 100%; /* Lebar penuh */
+    z-index: 0;
+}
+
+/* Styling untuk teks pada footer */
+footer p {
+    margin: 0; /* Menghilangkan margin bawaan */
+}
+
+/* Styling untuk elemen sebelum footer */
+#elemen-sebelum-footer {
+    margin-bottom: 2rem;
+}
+
