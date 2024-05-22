@@ -6,10 +6,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cara Pemesanan dan Pembayaran</title>
-    <link rel="icon" href="{{ asset('storage/images/title.jpeg') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/kbt.png') }}" type="image/png">
     <!-- Link to Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/pemesanan.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/tiket.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+    <style>
+        /* Menambahkan jarak di atas dan di bawah konten */
+        .page-single {
+            padding-top: 150px;
+            /* Jarak dari header */
+            padding-bottom: 20px;
+            /* Jarak ke footer */
+        }
+
+        /* Menambahkan jarak di atas footer */
+        .footer2 {
+            margin-top: 20px;
+            /* Sesuaikan nilai ini sesuai kebutuhan */
+        }
+
+        /* Container for navigation tabs, ensuring proper alignment and spacing */
+        .nav-tabs .container {
+            padding: 0;
+            /* Remove padding inside the container */
+            max-width: 100%;
+            /* Ensures the container can expand as needed */
+        }
+
+        /* Style for the navigation list */
+        .nav-tabs .nav {
+            list-style-type: none;
+            /* Removes list bullets */
+            padding: 0;
+            /* Removes padding */
+            display: flex;
+            /* Displays list items inline */
+            justify-content: flex-end;
+            /* Aligns the navigation to the right */
+            margin-bottom: 0;
+            /* Removes default bottom margin */
+        }
+
+        /* Styles for each navigation item */
+        .nav-tabs .nav li {
+            margin-left: 20px;
+            /* Spacing between menu items */
+        }
+
+        /* Link styling for non-active state */
+        .nav-tabs .nav a {
+            text-decoration: none;
+            /* Removes underline */
+            color: #007bff;
+            /* Bootstrap primary blue color, adjustable as needed */
+            padding: 10px 15px;
+            /* Padding for clickable area */
+            border-radius: 5px;
+            /* Rounded corners for aesthetic */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            /* Smooth transition for hover effects */
+        }
+
+        /* Hover and active link styling */
+        .nav-tabs .nav a:hover,
+        .nav-tabs .nav a.active {
+            color: #fff;
+            /* White text on active/hover */
+            background-color: #007bff;
+            /* Background color on hover/active */
+        }
+
+        /* Specific style when link is active */
+        .nav-tabs .nav a.active {
+            font-weight: bold;
+            /* Makes active link bold */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -21,15 +109,15 @@
                 <div class="container">
                     <div class="row">
                         <ul class="nav ml-auto">
-                            <li><a href="#cara-pemesanan" data-toggle="tab" class="active">Cara Pemesanan</a></li>
-                            <li><a href="#cara-pembayaran" data-toggle="tab">Cara Pembayaran</a></li>
+                            <li><a href="{{route('guest.pemesanan')}}" class="active">Cara Pemesanan</a></li>
+                            <li><a href="{{route('guest.pembayaran')}}">Cara Pembayaran</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="tab-content">
-                <div class="tab-pane active" id="cara-pemesanan">
+            <div class="tab-content" id="pemesananTabsContent">
+                <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="cara-pemesanan-tab">
 
                     <div class="w-100">
                         <div class="container-holder step-item my-5">
@@ -42,7 +130,7 @@
                                         </div>
                                         <div class="img-step">
                                             <div class="blue-box">
-                                                <img src="{{ url('storage/images/1.jpg') }}" class="img-100 float-right">
+                                                <img src="{{ asset('assets/img/bagan1.png') }}" class="img-100 float-right">
                                             </div>
                                         </div>
                                     </div>
@@ -65,16 +153,6 @@
                             <div class="container">
                                 <div class="row">
 
-                                    <div class="col-md-8 col-12 step-w">
-                                        <div class="step-number">
-                                            2
-                                        </div>
-                                        <div class="img-step">
-                                            <div class="blue-box">
-                                                <img src="assets/img/step-2.png" class="img-100 float-left">
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-md-4 col-12 d-flex justify-content-center align-items-center">
                                         <div class="w-100">
                                             <h3 class="primary-color bold mb-3">Lengkapi Info<br>Keberangkatan Anda</h3>
@@ -84,6 +162,17 @@
 
                                             <div class="f-small gray-color">*Layanan Jemput/Antar hanya tersedia pada keberangkatan melalui
                                                 Loket</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 col-12 step-w">
+                                        <div class="step-number">
+                                            2
+                                        </div>
+                                        <div class="img-step">
+                                            <div class="blue-box">
+                                                <img src="assets/img/step-2.png" class="img-100 float-left">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -124,6 +213,15 @@
                             <div class="container">
                                 <div class="row">
 
+                                    <div class="col-md-4 col-12 d-flex justify-content-center align-items-center">
+                                        <div class="w-100">
+                                            <h3 class="primary-color bold mb-3">Terima Tiket Anda</h3>
+
+                                            <p>Lunasi tiket anda dengan berbagai
+                                                metode pembayaran yang telah di sediakan</p>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-8 col-12 step-w">
                                         <div class="step-number">
                                             4
@@ -134,93 +232,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-12 d-flex justify-content-center align-items-center">
-                                        <div class="w-100">
-                                            <h3 class="primary-color bold mb-3">Terima Tiket Anda</h3>
-
-                                            <p>Lunasi tiket anda dengan berbagai
-                                                metode pembayaran yang telah di sediakan</p>
-                                        </div>
-                                    </div>
-
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                </div>
-                <div class="tab-pane" id="cara-pembayaran">
-
-                    <div class="container">
-                        <div class="section-title mb-3">
-                            <h3 class="bold text-uppercase primary-color mb-2">Cara pembayaran</h3>
-                            <h6 class="bold text-uppercase gray-color">tersedia berbagai jenis pembayaran yang memudahkan anda</h6>
-                        </div>
-
-                        <div id="accordion" class="accordion">
-                            <div class="card mb-0">
-                                <div class="accordion-item">
-                                    <div class="card-header collapsed" data-toggle="collapse" href="#collapse0">
-                                        <a class="card-title bold">
-                                            CIMB Virtual Account </a>
-                                    </div>
-                                    <div id="collapse0" class="card-body collapse" data-parent="#accordion">
-                                        <p style="margin-top:0cm"><b><span style="font-family: Calibri, sans-serif; font-size: 14px;">Pembayaran VA melalui ATM CIMB
-                                                    NIAGA</span></b><span style="font-family: Calibri, sans-serif; font-size: 14px;"></span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p style="margin-top: 0cm;"><span style="font-family: Calibri, sans-serif; font-size: 14px;">1.
-                                                Masukan kartu ATM dan PIN CIMB Niaga Anda<br>
-                                                2. Pilih Menu Pembayaran<br>
-                                                3. Pilih Virtual Account<br>
-                                                4. Masukkan NOMOR VIRTUAL ACCOUNT<br>
-                                                5. Muncul nama dan nominal billing di layar konfirmasi<br>
-                                                6. Pilih OK untuk payment</span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p style="margin-top: 0cm;"><span style="font-family: Calibri, sans-serif; font-size: 14px;">
-                                                <br>
-                                                <b>Pembayaran VA melalui OCTO Clicks</b></span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p style="margin-top: 0cm;"><span style="font-family: Calibri, sans-serif; font-size: 14px;">1.
-                                                Login ke OCTO Clicks<br>
-                                                2. Pilih menu Pembayaran Tagihan<br>
-                                                3. Pilih kategori Mobile Rekening Virtual<br>
-                                                4. Masukkan nomor Virtual Account Anda<br>
-                                                5. Tekan tombol 'lanjut untuk verifikasi detail'<br>
-                                                6. Tekan tombol 'kirim OTP untuk lanjut'<br>
-                                                7. Masukkan OTP yang dikirimkan ke nomor HP anda<br>
-                                                8. Tekan tombol 'Konfirmasi'</span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p style="margin-top: 0cm;"><span style="font-family: Calibri, sans-serif; font-size: 14px;">
-                                                <br>
-                                                <b>Pembayaran VA melalui OCTO MOBILE</b></span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p style="margin-top: 0cm;"><span style="font-family: Calibri, sans-serif; font-size: 14px;">1.
-                                                Login ke Octo Mobile<br>
-                                                2. Pilih menu TRANSFER &gt; Transfer to Other CIMB Niaga Account<br>
-                                                3. Pilih rekening sumber anda: CASA atau Rekening Ponsel<br>
-                                                4. Masukkan nomor Virtual Account Anda pada kolom Transfer To<br>
-                                                5. Masukkan jumlah amount sesuai tagihan<br>
-                                                6. Ikuti instruksi untuk menyelesaikan transaksi</span></p>
-                                        <p></p>
-                                        <p></p>
-                                        <p>
-                                            <font style="color: rgb(76, 76, 76); font-family: Roboto; font-size: 14px;"></font>
-                                        </p>
-                                        <p class="MsoNormal"></p>
-                                        <p>
-                                            <font style="font-size: 14px;"> </font>
-                                        </p>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -228,8 +245,17 @@
 
     @include('partials.footer')
 
-    <!-- Link to Bootstrap JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+
 </body>
 
 </html>

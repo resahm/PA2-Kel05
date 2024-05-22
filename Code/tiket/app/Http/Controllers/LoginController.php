@@ -26,12 +26,12 @@ class LoginController extends Controller
 
         // Login user atau admin berdasarkan guard yang sesuai
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('admin.dashboard'); // Redirect ke halaman dashboard admin
+            return redirect()->route('admin.dashboard')->with('success', 'Login berhasil! Selamat datang di halaman Admin.'); // Redirect ke halaman dashboard admin
         } elseif (Auth::guard('web')->attempt($credentials)) {
-            return redirect()->route('users.tiket');
+            return redirect()->route('users.tiket')->with('success', 'Login berhasil! Selamat datang, di website pemesanan tiket KBT'); // Redirect ke halaman users.tiket
         }
 
-        return back()->withErrors(['email' => 'Kombinasi email dan password tidak valid.']);
+        return back()->withErrors(['email' => 'Login gagal! Silahkan Daftar sekarang']);
     }
 
     public function logout(Request $request)

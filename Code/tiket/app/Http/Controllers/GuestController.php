@@ -10,4 +10,9 @@ class GuestController extends Controller
     {
         return view('guest.pemesanan');
     }
+    public function pembayaran()
+    {
+        return view('guest.pembayaran');
+    }
+
 }

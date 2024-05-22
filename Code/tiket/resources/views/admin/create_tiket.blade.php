@@ -102,6 +102,17 @@
         .text-purple {
             color: #800080;
         }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label,
+        select,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -110,7 +121,7 @@
     @include('admin.sidebar')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Tambah Informasi</h1>
+            <h1>Tambah Tiket</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
@@ -125,44 +136,68 @@
             <!-- Page Heading -->
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Buat Informasi KBT</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Buat Tiket KBT</h1>
                 </div>
-                <!-- Form untuk menambah data -->
-                <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
+                <!-- Form untuk menambah data detail tiket -->
+                <form action="{{ route('admin.detail_tiket.store') }}" method="POST">
                     @csrf
-                    <label for="judul">Judul Informasi</label>
-                    <input type="text" id="judul" name="judul" required>
+                    <label for="asal_keberangkatan">Asal Keberangkatan</label>
+                    <select id="asal_keberangkatan" name="asal_keberangkatan" required>
+                        <option value="">Pilih Asal Keberangkatan</option>
+                        <option value="Medan">Medan</option>
+                        <option value="Lubuk Pakam">Lubuk Pakam</option>
+                        <option value="Perbaungan">Perbaungan</option>
+                        <option value="Sei Rampah">Sei Rampah</option>
+                        <option value="Tebing Tinggi">Tebing Tinggi</option>
+                        <option value="Pematang Siantar">Pematang Siantar</option>
+                        <option value="Seribu Dolok">Seribu Dolok</option>
+                        <option value="Parapat">Parapat</option>
+                        <option value="Lumban Djulu">Lumban Djulu</option>
+                        <option value="Porsea">Porsea</option>
+                        <option value="Lubuk Pakam">Laguboti</option>
+                        <option value="Balige">Balige</option>
+                        <option value="Siborong-borong">Siborong-borong</option>
+                        <option value="Tarutung">Tarutung</option>
+                    </select>
+                    <br>
 
-                    <label for="deskripsi">Isi</label>
-                    <textarea id="deskripsi" name="deskripsi" required></textarea>
+                    <label for="tujuan_keberangkatan">Tujuan Keberangkatan</label>
+                    <select id="tujuan_keberangkatan" name="tujuan_keberangkatan" required>
+                        <option value="">Pilih Tujuan Keberangkatan</option>
+                        <option value="Medan">Medan</option>
+                        <option value="Lubuk Pakam">Lubuk Pakam</option>
+                        <option value="Perbaungan">Perbaungan</option>
+                        <option value="Sei Rampah">Sei Rampah</option>
+                        <option value="Tebing Tinggi">Tebing Tinggi</option>
+                        <option value="Pematang Siantar">Pematang Siantar</option>
+                        <option value="Seribu Dolok">Seribu Dolok</option>
+                        <option value="Parapat">Parapat</option>
+                        <option value="Lumban Djulu">Lumban Djulu</option>
+                        <option value="Porsea">Porsea</option>
+                        <option value="Lubuk Pakam">Laguboti</option>
+                        <option value="Balige">Balige</option>
+                        <option value="Siborong-borong">Siborong-borong</option>
+                        <option value="Tarutung">Tarutung</option>
+                    </select>
+                    <br>
 
-                    <label for="kategori">Kategori</label>
-                    <input type="text" id="kategori" name="kategori">
+                    <label for="kelas">Kelas</label>
+                    <select id="kelas" name="kelas" required>
+                        <option value="" disabled selected>Pilih Kelas KBT</option>
+                        <option value="Reguler">Reguler</option>
+                        <option value="Executive">Executive</option>
+                    </select>
+                    <br>
 
-                    <label for="tgl_publikasi">Tanggal Publikasi</label>
-                    <input type="date" id="tgl_publikasi" name="tgl_publikasi" required>
+                    <label for="harga">Harga</label>
+                    <input type="number" id="harga" name="harga" required>
+                    <br>
+                    
+                    <label for="metode_pembayaran">Metode Pembayaran</label>
+                    <input type="text" id="metode_pembayaran" name="metode_pembayaran" required>
+                    <br>
 
-                    <label for="image">Upload Image</label>
-                    <div class="card col-sm-4 mb-3">
-                        <input type="file" id="image" name="image" accept="image/*" onchange="previewImage();">
-                        <img id="imagePreview" style="max-width: 100px; height: auto; display: none;">
-                    </div>
-                    <script>
-                        function previewImage() {
-                            var file = document.getElementById("image").files;
-                            if (file.length > 0) {
-                                var fileReader = new FileReader();
-
-                                fileReader.onload = function(event) {
-                                    document.getElementById("imagePreview").setAttribute("src", event.target.result);
-                                    document.getElementById("imagePreview").style.display = 'block'; // Menampilkan gambar
-                                };
-
-                                fileReader.readAsDataURL(file[0]);
-                            }
-                        }
-                    </script>
-                    <button type="submit">Tambah Pengumuman</button>
+                    <button type="submit">Tambah Detail Tiket</button>
                 </form>
             </div>
     </main>

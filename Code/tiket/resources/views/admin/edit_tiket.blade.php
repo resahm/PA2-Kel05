@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat Paket</title>
+    <title>Edit Tiket</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
     <link rel="icon" href="{{ asset('assets/img/kbt.png') }}" type="image/png">
-    <!-- Link to Bootstrap CSS from CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/tiket.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -23,28 +23,17 @@
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
     <style>
-        /* Content styling */
-        #main {
-            margin-top: 150px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            position: static;
-        }
-
         form {
             margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
         }
 
         label {
+            display: block;
             margin-bottom: 5px;
-            font-weight: bold;
         }
 
         input,
@@ -53,8 +42,6 @@
             padding: 8px;
             margin-bottom: 10px;
             box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 3px;
         }
 
         button {
@@ -63,11 +50,6 @@
             padding: 10px 15px;
             border: none;
             cursor: pointer;
-            border-radius: 3px;
-        }
-
-        button:hover {
-            background-color: #375abb;
         }
 
         table {
@@ -135,70 +117,78 @@
 </head>
 
 <body>
-
-    @include('partials.header2')
+    @include('admin.header')
+    @include('admin.sidebar')
     <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Tambah Tiket</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                    <li class="breadcrumb-item">Informasi</li>
+                    <li class="breadcrumb-item active">Tambah Informasi</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Buat Pengiriman Paket</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Buat Tiket KBT</h1>
                 </div>
-                <!-- Form untuk menambah data detail tiket -->
-                <form action="{{ route('users.barang.store') }}" method="POST">
+                <!-- Form untuk mengedit data detail tiket -->
+                <form action="{{ route('admin.detail_tiket.update', $detail->id) }}" method="POST">
                     @csrf
-                    <label for="nama_paket">Nama Paket</label>
-                    <input type="text" id="nama_paket" name="nama_paket" required>
-                    <br>
-
-                    <label for="berat">Berat</label>
-                    <input type="number" id="berat" name="berat" required>
-                    <br>
-
-                    <label for="harga">Harga</label>
-                    <select id="harga" name="harga" required>
-                        <option value="">Pilih Harga Paket</option>
-                        <option value="10000">0-1 kg: Rp. 10.000</option>
-                        <option value="20000">1-2 kg: Rp. 20.000</option>
-                        <option value="30000">2-3 kg: Rp. 30.000</option>
+                    @method('PUT')
+                    <label for="asal_keberangkatan">Asal Keberangkatan</label>
+                    <select id="asal_keberangkatan" name="asal_keberangkatan" required>
+                        <!-- Pilihan asal keberangkatan -->
                     </select>
                     <br>
 
-                    <label for="kategori">Kategori</label>
-                    <input type="text" id="kategori" name="kategori" required>
+                    <label for="tujuan_keberangkatan">Tujuan Keberangkatan</label>
+                    <select id="tujuan_keberangkatan" name="tujuan_keberangkatan" required>
+                        <!-- Pilihan tujuan keberangkatan -->
+                    </select>
                     <br>
 
-                    <label for="pengirim_id">Nama Pengirim</label>
-                    <input type="text" id="name_pengirim" name="name_pengirim" required>
+                    <label for="kelas">Kelas</label>
+                    <select id="kelas" name="kelas" required>
+                        <!-- Pilihan kelas -->
+                    </select>
                     <br>
 
-                    <label for="pengirim_id">Nama Penerima</label>
-                    <input type="text" id="name_penerima" name="name_penerima" required>
+                    <label for="harga">Harga</label>
+                    <input type="number" id="harga" name="harga" value="{{ $detail->harga }}" required>
                     <br>
 
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" required></textarea>
+                    <label for="metode_pembayaran">Metode Pembayaran</label>
+                    <input type="text" id="metode_pembayaran" name="metode_pembayaran" value="{{ $detail->metode_pembayaran }}" required>
                     <br>
 
-                    <label for="waktu_kedatangan">Waktu Kedatangan</label>
-                    <input type="date" id="waktu_kedatangan" name="waktu_kedatangan">
-                    <br>
-
-                    <label for="waktu_keberangkatan">Waktu Keberangkatan</label>
-                    <input type="date" id="waktu_keberangkatan" name="waktu_keberangkatan">
-                    <br>
-
-                    <button type="submit"><i class="fas fa-box"></i> Submit</button>
+                    <button type="submit">Update Detail Tiket</button>
                 </form>
-
             </div>
     </main>
-    @include('partials.footer2')
 
-    <!-- Link to Bootstrap JavaScript from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @include ('admin.footer')
+    <!-- End of Content Wrapper -->
+
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js')}}"></script>
+
 </body>
 
 </html>

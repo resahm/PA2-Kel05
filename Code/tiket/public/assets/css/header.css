@@ -13,7 +13,6 @@
 }
 
 .nav-link {
-    color: #000000;
     margin: 5px 10px; /* Adds a bit of spacing around links for better touch interaction */
     transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
@@ -24,5 +23,10 @@
 
 /* Improves the dropdown menu appearance */
 .dropdown-menu {
+    display: none;
     border-radius: 0; /* Matches the more angular design language */
+}
+
+.dropdown-menu.show {
+    display: block;
 }

@@ -1,111 +1,84 @@
-.tabbable {
-    display: inline-table;
-    width: 100%;
-}
-
-.tabbable .nav-tabs {
-    padding-top: 20px;
-    margin-bottom: 30px;
-    background: var(--primary-color);
-    border: 0;
-}
-
-.tabbable .nav-tabs a {
-    padding: 10px 20px;
-    color: var(--white-color) !important;
-    display: inline-table;
-    font-family: var(--title-font-family);
-}
-
-.tabbable .nav-tabs a.active {
-    background: var(--white-color) !important;
-    color: var(--primary-color) !important;
-}
-
-.container {
-    max-width: 100%;
-}
-
-a:active {
-    color: var(--secondary-color);
-    outline: none;
-    text-decoration: none;
-}
-
-.step-item .img-step {
-    background: var(--primary-color);
-    border-radius: 25px;
-    display: inline-block;
-    height: 100%;
-    padding: 15px;
-}
-
-.step-item .img-step img {
-    max-width: 100%;
-    height: auto;
-    max-height: 200px;
-    /* Adjust as needed */
-}
-
-.step-item .step-number {
-    position: absolute;
-    right: 30px;
-    font-size: 52px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--gray-color);
-}
-
-.step-item .step-number:after {
-    content: '.............';
-    position: absolute;
-    font-size: 30px;
-    color: var(--primary-color);
-    width: 100px;
-    right: 0;
-    bottom: -10px;
-}
-
-.step-item .step-w {
-    padding-right: 100px;
-    position: relative;
-    z-index: 1;
-}
-
-.step-item:nth-child(even) .step-w {
-    padding-left: 100px;
-}
-
-.step-item .col-md-4 {
-    text-align: center;
+/* CSS for Pemesanan Page */
+.page-single {
+    padding: 20px 0;
+    background-color: #f9f9f9;
 }
 
 .container-holder {
-    overflow: hidden;
-    background: var(--white-color);
-    display: inline-table;
-    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-    .step-item .col-md-8 {
-        order: 2;
-        padding-top: 20px;
-    }
-
-    .step-item .col-md-4 {
-        order: 1;
-        text-align: center;
-        padding-top: 20px;
-    }
-
-    .step-item:nth-child(even) .step-w {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .step-item:nth-child(even) .col-md-8,
-    .step-item:nth-child(even) .col-md-4 {
-        order: 1;
-    }
+.step-item {
+    padding: 20px;
 }
+
+.step-number {
+    font-size: 40px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.step-w {
+    position: relative;
+}
+
+.step-item h3 {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.step-item p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.img-100 {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; 
+}
+
+.img-step {
+    position: relative; /* Menjadikan posisi relatif */
+    background-color: #007bff;
+    border-radius: 40px; /* Ubah nilai sesuai keinginan */
+    width: 700px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+    margin-left: 50px;
+}
+
+.img-step img {
+    position: relative; 
+    border-radius: 20px; 
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.card-header {
+    background-color: #f7f7f7;
+    border: none;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body {
+    border-top: 1px solid #f7f7f7;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.6;
+}
+

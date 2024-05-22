@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi KBT</title>
+    <title>Tabel-Informasi Tiket KBT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -110,12 +110,12 @@
     @include('admin.sidebar')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Tambah Informasi</h1>
+            <h1>Informasi Tiket KBT</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item">Informasi</li>
-                    <li class="breadcrumb-item active">Tambah Informasi</li>
+                    <li class="breadcrumb-item">Tiket</li>
+                    <li class="breadcrumb-item active">Tabel-Informasi Tiket KBT</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -125,46 +125,56 @@
             <!-- Page Heading -->
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Buat Informasi KBT</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Informasi Tiket KBT</h1>
                 </div>
-                <!-- Form untuk menambah data -->
-                <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <label for="judul">Judul Informasi</label>
-                    <input type="text" id="judul" name="judul" required>
 
-                    <label for="deskripsi">Isi</label>
-                    <textarea id="deskripsi" name="deskripsi" required></textarea>
+                <!-- Tabel untuk menampilkan data -->
 
-                    <label for="kategori">Kategori</label>
-                    <input type="text" id="kategori" name="kategori">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Asal Keberangkatan</th>
+                            <th>Tujuan Keberangkatan</th>
+                            <th>Kelas</th>
+                            <th>Harga</th>
+                            <th>Metode Pembayaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($details as $key => $detail)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $detail->asal_keberangkatan }}</td>
+                            <td>{{ $detail->tujuan_keberangkatan }}</td>
+                            <td>{{ $detail->kelas }}</td>
+                            <td>{{ $detail->harga }}</td>
+                            <td>{{ $detail->metode_pembayaran }}</td>
+                            <td class="action-buttons">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ route('admin.edit_tiket', $detail->id) }}" class="btn btn-primary" style="margin-bottom: 20px;">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
 
-                    <label for="tgl_publikasi">Tanggal Publikasi</label>
-                    <input type="date" id="tgl_publikasi" name="tgl_publikasi" required>
-
-                    <label for="image">Upload Image</label>
-                    <div class="card col-sm-4 mb-3">
-                        <input type="file" id="image" name="image" accept="image/*" onchange="previewImage();">
-                        <img id="imagePreview" style="max-width: 100px; height: auto; display: none;">
-                    </div>
-                    <script>
-                        function previewImage() {
-                            var file = document.getElementById("image").files;
-                            if (file.length > 0) {
-                                var fileReader = new FileReader();
-
-                                fileReader.onload = function(event) {
-                                    document.getElementById("imagePreview").setAttribute("src", event.target.result);
-                                    document.getElementById("imagePreview").style.display = 'block'; // Menampilkan gambar
-                                };
-
-                                fileReader.readAsDataURL(file[0]);
-                            }
-                        }
-                    </script>
-                    <button type="submit">Tambah Pengumuman</button>
-                </form>
+                                    <!-- Tombol Delete -->
+                                    <form action="{{ route('admin.tiket.destroy', $detail->id) }}" method="POST" style="margin-left: 10px;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus informasi ini?')">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+        </div>
+        </div>
     </main>
 
     @include ('admin.footer')

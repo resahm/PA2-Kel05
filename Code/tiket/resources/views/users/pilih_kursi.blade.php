@@ -64,6 +64,7 @@
         .post-meta {
             display: block;
             margin-bottom: 10px;
+            color:#222
         }
 
         h3 {
@@ -149,15 +150,6 @@
                 </div>
             </div>
         </section><!-- End Hero -->
-        <script>
-            document.getElementById('ticketForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                // Process the form data here if needed
-
-                // Redirect to users.info_pelanggan page
-                window.location.href = '/users.info_pelanggan';
-            });
-        </script>
         <!-- ======= Home Section ======= -->
         <section>
             <div class="container">
@@ -264,7 +256,7 @@
                         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                             <div class="swiper-slide">
                                 <div class="row">
-                                    @php $counter = 1; @endphp
+                                    @php $counter = 0; @endphp
                                     @foreach ($informasi as $item)
                                     <div class="col-md-6">
                                         <div class="review">

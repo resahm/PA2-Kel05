@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi KBT</title>
+    <title>Tabel-Payments Tiket KBT</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -110,12 +110,12 @@
     @include('admin.sidebar')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Tambah Informasi</h1>
+            <h1>Detail Payment Pelanggan</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item">Informasi</li>
-                    <li class="breadcrumb-item active">Tambah Informasi</li>
+                    <li class="breadcrumb-item">Payments</li>
+                    <li class="breadcrumb-item active">Details</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -125,46 +125,49 @@
             <!-- Page Heading -->
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Buat Informasi KBT</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Details Payment KBT</h1>
                 </div>
-                <!-- Form untuk menambah data -->
-                <form action="{{ route('admin.informasi.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <label for="judul">Judul Informasi</label>
-                    <input type="text" id="judul" name="judul" required>
 
-                    <label for="deskripsi">Isi</label>
-                    <textarea id="deskripsi" name="deskripsi" required></textarea>
+                <!-- Tabel untuk menampilkan data -->
 
-                    <label for="kategori">Kategori</label>
-                    <input type="text" id="kategori" name="kategori">
-
-                    <label for="tgl_publikasi">Tanggal Publikasi</label>
-                    <input type="date" id="tgl_publikasi" name="tgl_publikasi" required>
-
-                    <label for="image">Upload Image</label>
-                    <div class="card col-sm-4 mb-3">
-                        <input type="file" id="image" name="image" accept="image/*" onchange="previewImage();">
-                        <img id="imagePreview" style="max-width: 100px; height: auto; display: none;">
-                    </div>
-                    <script>
-                        function previewImage() {
-                            var file = document.getElementById("image").files;
-                            if (file.length > 0) {
-                                var fileReader = new FileReader();
-
-                                fileReader.onload = function(event) {
-                                    document.getElementById("imagePreview").setAttribute("src", event.target.result);
-                                    document.getElementById("imagePreview").style.display = 'block'; // Menampilkan gambar
-                                };
-
-                                fileReader.readAsDataURL(file[0]);
-                            }
-                        }
-                    </script>
-                    <button type="submit">Tambah Pengumuman</button>
-                </form>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Ticket</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Payment Date</th>
+                            <th>Image</th>
+                            <th>Notes</th>
+                    </thead>
+                    <tbody>
+                        @if(isset($details))
+                        @foreach($details as $key => $detail)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $payment->ticket_id }}</td>
+                            <td>{{ $payment->amount }}</td>
+                            <td>{{ $payment->payment_method }}</td>
+                            <td>{{ $payment->status }}</td>
+                            <td>{{ $payment->payment_date }}</td>
+                            <td>
+                                @if($payment->image)
+                                <img src="{{ asset($payment->image) }}" alt="Payment Image" style="width: 100px; height: auto;">
+                                @else
+                                No Image
+                                @endif
+                            </td>
+                            <td>{{ $payment->notes }}</td>
+                        </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
+                </table>
             </div>
+        </div>
+        </div>
     </main>
 
     @include ('admin.footer')
