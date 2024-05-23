@@ -3,75 +3,117 @@
     max-width: 500px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.container2:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Form styling */
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px; /* Add space between form fields */
+}
+
+/* Header styling */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Label styling */
 label {
     margin-bottom: 5px;
     font-weight: bold;
+    color: #333;
     display: block;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Input field styling */
 .input-field {
     position: relative;
-    margin-bottom: 15px;
 }
 
-.input-field input {
-    width: calc(100% - 40px);
-    /* Adjusted width to accommodate eye icon */
-    padding: 10px;
+.input-field input,
+.input-field select {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Adjusted padding for a more spacious feel */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-family: 'Arial', sans-serif;
+}
+
+.input-field input:focus,
+.input-field select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Password toggle icon styling */
 .password-toggle {
     position: absolute;
-    top: 50%;
-    right: 5px;
+    top: 65%;
+    right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.password-toggle:hover {
+    color: #007bff;
 }
 
 /* Error message styling */
-.error {
+.invalid-feedback {
     color: red;
     font-size: 0.8em;
     margin-top: 5px;
+    display: block;
+}
+
+/* Guidance message styling */
+.form-text {
+    color: #666;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
 }
 
 /* Submit button styling */
 input[type="submit"] {
     background-color: #007bff;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 /* Media query for responsive layout */
 @media (max-width: 768px) {
     .container2 {
-        width: 100%;
-        padding: 10px;
+        width: 90%;
+        padding: 15px;
     }
 }
