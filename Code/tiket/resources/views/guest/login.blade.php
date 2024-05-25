@@ -32,7 +32,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="login">
-                    <h3>Login Member</h3>
+                    <h3>Login</h3>
                     <p>Selamat Datang</p>
                     @if(session('success'))
                     <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">

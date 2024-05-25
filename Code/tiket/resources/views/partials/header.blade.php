@@ -30,7 +30,7 @@
 
                 <!-- Menu Login Member -->
                 <li class="nav-item flex-fill" role="presentation">
-                    <a class="nav-link w-100 {{ request()->is('/') ? 'active' : '/' }}" href="{{ route('guest.login') }}" role="tab" aria-controls="login member" aria-selected="false">LOGIN MEMBER</a>
+                    <a class="nav-link w-100 {{ request()->is('/') ? 'active' : '/' }}" href="{{ route('guest.login') }}" role="tab" aria-controls="login member" aria-selected="false">LOGIN</a>
                 </li>
 
                 <!-- Menu Kirim Barang -->
