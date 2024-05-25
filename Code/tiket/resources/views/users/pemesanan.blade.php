@@ -24,79 +24,7 @@
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
-    <style>
-        /* Menambahkan jarak di atas dan di bawah konten */
-        .page-single {
-            padding-top: 150px;
-            /* Jarak dari header */
-            padding-bottom: 20px;
-            /* Jarak ke footer */
-        }
-
-        /* Menambahkan jarak di atas footer */
-        .footer2 {
-            margin-top: 20px;
-            /* Sesuaikan nilai ini sesuai kebutuhan */
-        }
-
-        /* Container for navigation tabs, ensuring proper alignment and spacing */
-        .nav-tabs .container {
-            padding: 0;
-            /* Remove padding inside the container */
-            max-width: 100%;
-            /* Ensures the container can expand as needed */
-        }
-
-        /* Style for the navigation list */
-        .nav-tabs .nav {
-            list-style-type: none;
-            /* Removes list bullets */
-            padding: 0;
-            /* Removes padding */
-            display: flex;
-            /* Displays list items inline */
-            justify-content: flex-end;
-            /* Aligns the navigation to the right */
-            margin-bottom: 0;
-            /* Removes default bottom margin */
-        }
-
-        /* Styles for each navigation item */
-        .nav-tabs .nav li {
-            margin-left: 20px;
-            /* Spacing between menu items */
-        }
-
-        /* Link styling for non-active state */
-        .nav-tabs .nav a {
-            text-decoration: none;
-            /* Removes underline */
-            color: #007bff;
-            /* Bootstrap primary blue color, adjustable as needed */
-            padding: 10px 15px;
-            /* Padding for clickable area */
-            border-radius: 5px;
-            /* Rounded corners for aesthetic */
-            transition: color 0.3s ease, background-color 0.3s ease;
-            /* Smooth transition for hover effects */
-        }
-
-        /* Hover and active link styling */
-        .nav-tabs .nav a:hover,
-        .nav-tabs .nav a.active {
-            color: #fff;
-            /* White text on active/hover */
-            background-color: #007bff;
-            /* Background color on hover/active */
-        }
-
-        /* Specific style when link is active */
-        .nav-tabs .nav a.active {
-            font-weight: bold;
-            /* Makes active link bold */
-        }
-    </style>
+    <link href="{{ asset('assets/css/pemesanan.css') }}" rel="stylesheet">
 
 </head>
 
@@ -138,8 +66,8 @@
                                         <div class="w-100">
                                             <h3 class="primary-color bold mb-3">Pilih Perjalanan</h3>
 
-                                            <p>Pilih Rute Perjalanan Anda, tersedia layanan 
-                                                penjemputan jika keberangkatan melalui loket. 
+                                            <p>Pilih Rute Perjalanan Anda, tersedia layanan
+                                                penjemputan jika keberangkatan melalui loket.
                                                 Pastikan untuk mengisi tanggal keberangkatan d
                                                 an jumlah penumpang.</p>
                                         </div>
@@ -171,7 +99,7 @@
                                         </div>
                                         <div class="img-step">
                                             <div class="blue-box">
-                                                <img src="assets/img/step-2.png" class="img-100 float-left">
+                                                <img src="{{ asset('assets/img/bagan2.png') }}" class="img-100 float-left">
                                             </div>
                                         </div>
                                     </div>

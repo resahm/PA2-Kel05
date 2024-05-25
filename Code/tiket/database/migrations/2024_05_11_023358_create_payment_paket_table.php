@@ -16,10 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('paket_id');
             $table->decimal('amount', 10, 2);
             $table->string('payment_method');
-            $table->string('status');
             $table->dateTime('payment_date')->nullable();
             $table->string('image')->nullable();
-            $table->text('notes')->nullable();
             $table->timestamps();
 
             $table->foreign('paket_id')->references('id')->on('paket')->onDelete('cascade');

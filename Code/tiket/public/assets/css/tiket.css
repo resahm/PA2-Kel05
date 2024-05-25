@@ -136,7 +136,7 @@
 
 /* CSS for features section */
 .section-heading {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     margin-bottom: auto;
     font-style: italic;
@@ -156,6 +156,7 @@
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 30px;
+    box-shadow: 0px 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .review {
@@ -169,13 +170,15 @@
 }
 
 .post-text {
-    padding: 20px;
+    padding: 30px;
 }
 
 .post-meta {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
+    color: #007bff;
+    display: block;
+    font-size: 15px;
+    align-items: baseline;
+    margin-bottom: 5px; /* Jarak antara tanggal dan gambar */
 }
 
 .post-text h3 {

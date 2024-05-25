@@ -171,7 +171,7 @@
                                         </div>
                                         <div class="img-step">
                                             <div class="blue-box">
-                                                <img src="assets/img/step-2.png" class="img-100 float-left">
+                                                <img src="{{ asset('assets/img/bagan2.png') }}" class="img-100 float-left">
                                             </div>
                                         </div>
                                     </div>

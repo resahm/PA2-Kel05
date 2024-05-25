@@ -42,6 +42,7 @@ class TicketController extends Controller
 
         return redirect()->route('admin.tabel_tiket')->with('success', 'Detail Tiket berhasil ditambahkan');
     }
+
     public function informasi_tiket()
     {
         $details = DetailTiket::all();
@@ -55,13 +56,14 @@ class TicketController extends Controller
         return view('admin.approval_tiket', compact('approvals'));
     }
 
+    // Fungsi untuk mengedit detail tiket
     public function edit($id)
     {
         $detail = DetailTiket::findOrFail($id);
-
         return view('admin.edit_tiket', compact('detail'));
     }
 
+    // Fungsi untuk memperbarui detail tiket
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -70,14 +72,22 @@ class TicketController extends Controller
             'kelas' => 'required|string',
             'harga' => 'required|numeric',
             'metode_pembayaran' => 'required|string',
+        ], [
+            'asal_keberangkatan.required' => 'Asal Keberangkatan harus diisi',
+            'tujuan_keberangkatan.required' => 'Tujuan Keberangkatan harus diisi',
+            'kelas.required' => 'Kelas harus diisi',
+            'harga.required' => 'Harga harus diisi',
+            'harga.numeric' => 'Harga harus berupa angka',
+            'metode_pembayaran.required' => 'Metode Pembayaran harus diisi',
         ]);
 
         $detail = DetailTiket::findOrFail($id);
-        $detail->fill($validatedData)->save();
+        $detail->update($validatedData);
 
-        return redirect()->route('admin.tabel_tiket')->with('success', 'Detail Tiket berhasil diupdate');
+        return redirect()->route('admin.tabel_tiket')->with('success', 'Detail Tiket berhasil diperbarui');
     }
 
+    // Fungsi untuk menghapus detail tiket
     public function destroy($id)
     {
         $detail = DetailTiket::findOrFail($id);

@@ -25,46 +25,7 @@
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <style>
-        /* Style untuk tabel */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        /* Style untuk card */
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        /* Style untuk bagian utama */
-        .main {
-            padding: 20px;
-        }
-    </style>
+    <link href="{{ asset('assets/css/cek_pesanan.css') }}" rel="stylesheet">
 
 </head>
 

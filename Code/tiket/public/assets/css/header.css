@@ -1,64 +1,32 @@
-/********************
- * TOP NAVIGATION
- ********************/
- .navbar {
-    transition: all 0.3s ease-in-out;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
+.navbar {
+    background-color: #ffffff; /* Keeps the navbar white for a clean look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 10px 0;
+}
+
+.navbar-brand img {
+    height: 70px; /* Adjusted to a more reasonable size */
+}
+
+.navbar-toggler {
     border: none;
-    background-color: #fff;
 }
 
-.navbar .navbar-toggler,
-.navbar .navbar-toggler:hover,
-.navbar .navbar-toggler:focus {
-    background-color: #f8f8f8;
+.nav-link {
+    margin: 5px 10px; /* Adds a bit of spacing around links for better touch interaction */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.navbar-brand {
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
+.nav-link:hover, .nav-link:focus {
+    color: #007bff; /* Bootstrap primary color for consistency */
 }
 
-.navbar-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
-    white-space: nowrap;
+/* Improves the dropdown menu appearance */
+.dropdown-menu {
+    display: none;
+    border-radius: 0; /* Matches the more angular design language */
 }
 
-.navbar-nav .nav-item {
-    flex: 0 0 auto;
-    text-align: center;
-}
-
-.navbar-nav .nav-item .nav-link {
-    padding: 15px 10px;
-    color: #000;
-    transition: color 0.3s ease-in-out;
-}
-
-.navbar-nav .nav-item .nav-link:hover,
-.navbar-nav .nav-item .nav-link:focus,
-.navbar-nav .nav-item .nav-link.active {
-    color: #00AAFF;
-}
-
-.navbar-nav .nav-item .nav-link img {
-    margin-right: 8px;
-}
-
-.nav-profile {
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-}
-
-.profile-img {
-    height: 40px;
-    width: 40px;
+.dropdown-menu.show {
+    display: block;
 }

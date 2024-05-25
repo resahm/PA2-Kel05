@@ -137,10 +137,8 @@
                             <th>ID Paket</th>
                             <th>Amount</th>
                             <th>Payment Method</th>
-                            <th>Status</th>
                             <th>Payment Date</th>
                             <th>Image</th>
-                            <th>Notes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -151,7 +149,6 @@
                             <td>{{ $detail->paket_id }}</td>
                             <td>{{ $detail->amount }}</td>
                             <td>{{ $detail->payment_method }}</td>
-                            <td>{{ $detail->status }}</td>
                             <td>{{ $detail->payment_date }}</td>
                             <td>
                                 @if($detail->image)
@@ -160,7 +157,6 @@
                                 No Image
                                 @endif
                             </td>
-                            <td>{{ $detail->notes }}</td>
                         </tr>
                         @endforeach
                         @endif

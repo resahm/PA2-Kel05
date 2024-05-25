@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+/* Style for the alert message */
+.alert {
+    font-size: 16px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Style for the table */
+.table {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+}
+
+.table thead tr {
+    background-color: #f8f9fa;
+}
+
+.table thead th {
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    background-color: blue;
+}
+
+.table tbody tr {
+    background-color: #ffffff;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Style for the form */
+form {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+/* Style for the header */
+header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 15px 0;
+}
+
+header .navbar-brand {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+header .navbar-nav .nav-link {
+    color: #fff;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+/* Style for the footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 200px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+.table-responsive {
+    margin-top: 70px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+}
+
+.table thead th,
+.table tbody td {
+    font-size: 14px;
+}
+
+.btn {
+    width: 100%;
+    font-size: 16px;
+}

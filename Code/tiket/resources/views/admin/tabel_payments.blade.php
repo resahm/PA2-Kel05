@@ -137,10 +137,8 @@
                             <th>ID Ticket</th>
                             <th>Amount</th>
                             <th>Payment Method</th>
-                            <th>Status</th>
                             <th>Payment Date</th>
                             <th>Image</th>
-                            <th>Notes</th>
                     </thead>
                     <tbody>
                         @if(isset($details))
@@ -150,7 +148,6 @@
                             <td>{{ $payment->ticket_id }}</td>
                             <td>{{ $payment->amount }}</td>
                             <td>{{ $payment->payment_method }}</td>
-                            <td>{{ $payment->status }}</td>
                             <td>{{ $payment->payment_date }}</td>
                             <td>
                                 @if($payment->image)
@@ -159,7 +156,6 @@
                                 No Image
                                 @endif
                             </td>
-                            <td>{{ $payment->notes }}</td>
                         </tr>
                         @endforeach
                         @endif

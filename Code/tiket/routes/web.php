@@ -16,6 +16,7 @@ use App\Http\Controllers\UserInformasiController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserTiketController;
+use App\Http\Controllers\UserPaymentController;
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('guest.login');
@@ -31,10 +32,20 @@ Route::get('/pemesanan', [GuestController::class, 'pemesanan'])->name('guest.pem
 Route::get('/pembayaran', [GuestController::class, 'pembayaran'])->name('guest.pembayaran');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/users/tiket', [UserController::class, 'index'])->name('users.tiket');
-    Route::get('/users/tiket', [UserInformasiController::class, 'informasi'])->name('users.tiket');
-    Route::post('/submit-ticket', [UserTiketController::class, 'submitTicket'])->name('submit.ticket');
-    Route::get('/users.info_pelanggan', [UserTiketController::class, 'index'])->name('users.info_pelanggan');
+    Route::get('/users/tiket', [UserController::class, 'index'])->name('users.tiket'); // Corrected UserController for tiket route
+    Route::get('/users/tiket', [UserInformasiController::class, 'informasi'])->name('users.tiket'); // Possible duplication, remove if not needed
+    Route::get('/users/info_pelanggan', [UserTiketController::class, 'index'])->name('users.info_pelanggan');
+    Route::post('/users/tickets/store', [UserTiketController::class, 'store'])->name('users.tickets.store');
+    Route::post('/users/info_pelanggan/store', [UserTiketController::class, 'storeInfoPelanggan'])->name('users.store_info_pelanggan');
+    Route::post('/users/pilih_kursi/store', [UserTiketController::class, 'storePilihKursi'])->name('users.store_pilih_kursi');
+    Route::get('/users/pilih_kursi', [UserTiketController::class, 'pilihKursi'])->name('users.pilih_kursi');
+    Route::get('/jumlah-penumpang-terakhir', [UserTiketController::class, 'getLastTicketJumlahPenumpang']);
+    Route::get('/users/terima-tiket', [UserTiketController::class, 'terimaTiket'])->name('users.terima_tiket');
+    Route::get('/ticket-info', [UserTiketController::class, 'showTicketInfo'])->name('users.konfirmasi');
+    Route::post('/bukti_pembayaran', [UserTiketController::class, 'storeBuktiPembayaran'])->name('users.store_bukti_pembayaran_alt');
+    Route::get('/bukti_pembayaran', [UserPaymentController::class, 'showForm'])->name('users.bukti_pembayaran');
+    Route::post('/bukti-pembayaran', [UserPaymentController::class, 'store'])->name('users.bukti_pembayaran');
+    Route::get('/konfirmasi', [UserPaymentController::class, 'konfirmasi'])->name('users.konfirmasi');
     Route::get('/users/pemesanan', [UserController::class, 'pemesanan'])->name('users.pemesanan');
     Route::get('/users/pembayaran', [UserController::class, 'pembayaran'])->name('users.pembayaran');
     Route::get('users/cek_pesanan', [UserController::class, 'cekPesanan'])->name('users.cek_pesanan');
@@ -51,9 +62,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/pelanggan', [AdminController::class, 'pelanggan'])->name('admin.pelanggan');
-    Route::get('/admin/informasi', [AdminController::class, 'informasi'])->name('admin.informasi');
+    Route::get('/admin/profile', [AdminController::class, 'index'])->name('admin.profile');
     Route::get('/admin/tabel_informasi', [AdminController::class, 'tabel_informasi'])->name('admin.tabel_informasi');
 
     // Informasi Routes
@@ -72,19 +81,21 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/create_tiket', [TicketController::class, 'create'])->name('admin.create_tiket');
     Route::post('/admin/create_tiket/store', [TicketController::class, 'store'])->name('admin.detail_tiket.store');
     Route::get('/admin/tabel_tiket', [TicketController::class, 'informasi_tiket'])->name('admin.tabel_tiket');
-    Route::get('admin/tiket/{id}/edit', [TicketController::class, 'edit'])->name('admin.edit_tiket');
-    Route::put('admin/tiket/{id}', [TicketController::class, 'update'])->name('admin.update_tiket');
-    Route::delete('tiket/{id}', [TicketController::class, 'destroy'])->name('admin.tiket.destroy');
+    Route::get('/admin/edit_tiket/{id}', [TicketController::class, 'edit'])->name('admin.edit_tiket');
+    Route::put('/admin/update_tiket/{id}', [TicketController::class, 'update'])->name('admin.update_tiket');
+    Route::delete('/admin/tiket/{id}', [TicketController::class, 'destroy'])->name('admin.tiket.destroy');
     Route::get('/admin/approval_tiket', [TicketController::class, 'approvalTiket'])->name('admin.approval_tiket');
 
-    // Profile and Other Routes
-    Route::get('/admin/profile', [AdminController::class, 'index'])->name('admin.profile');
+    // Paket Routes
     Route::get('/admin/tabel_paket', [PaketController::class, 'index'])->name('admin.tabel_paket');
     Route::get('admin/payment_paket', [PaketController::class, 'paymentPaket'])->name('admin.payment_paket');
-    Route::get('/admin/tabel_payments', 'App\Http\Controllers\PaymentController@index')->name('admin.tabel_payments');
-    Route::get('/your-route', 'YourController@showDetails');
+
+    // Kendaraan Routes
     Route::get('/admin/kendaraan', [KendaraanController::class, 'index'])->name('admin.kendaraan_kbt');
     Route::post('/booking/seat', [KendaraanController::class, 'bookSeat'])->name('booking.seat');
+
+    // Payment Routes
+    Route::get('/admin/tabel_payments', 'App\Http\Controllers\PaymentController@index')->name('admin.tabel_payments');
 
     //Notifikasi
     Route::get('/admin/header', [NotificationController::class, 'index'])->name('admin.notification');

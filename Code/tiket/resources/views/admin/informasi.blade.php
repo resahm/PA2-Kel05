@@ -141,11 +141,25 @@
 
                     <label for="tgl_publikasi">Tanggal Publikasi</label>
                     <input type="date" id="tgl_publikasi" name="tgl_publikasi" required>
+                    <script>
+                        // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+                        function getTodayDate() {
+                            const today = new Date();
+                            const yyyy = today.getFullYear();
+                            const mm = String(today.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                            const dd = String(today.getDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        }
+
+                        // Set nilai minimum untuk tanggal pemesanan dan tanggal keberangkatan
+                        const todayDate = getTodayDate();
+                        document.getElementById('tgl_publikasi').setAttribute('min', todayDate);
+                    </script>
 
                     <label for="image">Upload Image</label>
                     <div class="card col-sm-4 mb-3">
                         <input type="file" id="image" name="image" accept="image/*" onchange="previewImage();">
-                        <img id="imagePreview" style="max-width: 100px; height: auto; display: none;">
+                        <img id="imagePreview" style="display: none;">
                     </div>
                     <script>
                         function previewImage() {

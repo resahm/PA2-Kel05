@@ -25,7 +25,7 @@ class RegistrasiController extends Controller
             'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9]{8,}$/',
         ], [
             'name.regex' => 'Format Nama Lengkap tidak valid. Nama harus diawali dengan huruf kapital dan hanya mengandung huruf kecil setelahnya.',
-            'phone_number.digits_between' => 'Kolom No. HP harus memiliki panjang 12 angka.',
+            'phone_number.digits_between' => 'Kolom No. HP harus memiliki panjang antara 12 hingga 13 angka.',
             'gender.in' => 'Pilihan Jenis Kelamin tidak valid.',
             'identity_number.digits' => 'Kolom Nomor Identitas harus terdiri dari 16 angka.',
             'birthdate.date' => 'Format Tanggal Lahir tidak valid.',

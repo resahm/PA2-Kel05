@@ -1,4 +1,4 @@
-<body>
+<head>
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -9,7 +9,7 @@
             /* Berikan margin kanan antara ikon */
         }
     </style>
-</body>
+</head>
 <footer>
     <div class="container">
         <div class="row">
@@ -26,12 +26,11 @@
                         <a class="nav-link w-100" href="{{ route('guest.login') }}">CEK PESANAN</a>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <a class="nav-link w-100" href="{{ route('guest.login') }}">LOGIN</a>
+                        <a class="nav-link w-100" href="{{ route('guest.login') }}">LOGIN MEMBER</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-4">
-                <h5>Tentang Kami</h5>
                 <a href="https://www.facebook.com/groups/202854083764182/"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/explore/locations/618581213/loket-koperasi-bintang-tapanuli/"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@bintangtapanuli1?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>

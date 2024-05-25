@@ -32,22 +32,63 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/info_pelanggan.css')}}" rel="stylesheet">
+
 </head>
 
 <body>
 
     @include('partials.header2')
 
-
-    <h1>Info Pelanggan</h1>
-    <!-- Tampilkan informasi pelanggan di sini -->
-    @if(session('success'))
+    <div class="container mt-5">
+        @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-    @endif
+        @endif
+
+        <!-- Tabel Data Pelanggan -->
+        <div class="table-responsive mb-4">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Tanggal Keberangkatan</th>
+                        <th>Asal Keberangkatan</th>
+                        <th>Tujuan Keberangkatan</th>
+                        <th>Jumlah Penumpang</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tickets as $ticket)
+                    <tr>
+                        <td>{{ $ticket->tanggal_pemesanan }}</td>
+                        <td>{{ $ticket->tanggal_keberangkatan }}</td>
+                        <td>{{ $ticket->asal_keberangkatan }}</td>
+                        <td>{{ $ticket->tujuan_keberangkatan }}</td>
+                        <td>{{ $ticket->jumlah_penumpang }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Form -->
+        <form action="{{ route('users.store_info_pelanggan') }}" method="POST">
+            @csrf
+            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+            <div class="mb-3">
+                <label for="waktu_keberangkatan" class="form-label">Waktu Keberangkatan</label>
+                <input type="time" id="waktu_keberangkatan" name="waktu_keberangkatan" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
     @include('partials.footer2')
+
+    <!-- Include Bootstrap JavaScript from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

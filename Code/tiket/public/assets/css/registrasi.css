@@ -18,7 +18,8 @@
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Add space between form fields */
+    gap: 15px;
+    /* Add space between form fields */
 }
 
 /* Header styling */
@@ -47,7 +48,8 @@ label {
 .input-field input,
 .input-field select {
     width: 100%;
-    padding: 10px 40px 10px 10px; /* Adjusted padding for a more spacious feel */
+    padding: 10px 40px 10px 10px;
+    /* Adjusted padding for a more spacious feel */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;

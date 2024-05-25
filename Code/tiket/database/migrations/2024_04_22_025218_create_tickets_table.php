@@ -16,16 +16,17 @@ RETURN NEW class extends Migration
             $TABLE->foreignId('user_id')->constrained()->onDelete('cascade'); 
             $TABLE->DATE('tanggal_pemesanan');
             $TABLE->DATE('tanggal_keberangkatan');
-            $TABLE->TIME('waktu_keberangkatan');
+            $TABLE->INTEGER('jumlah_penumpang');
             $TABLE->STRING('asal_keberangkatan');
             $TABLE->STRING('tujuan_keberangkatan');
-            $TABLE->STRING('kelas');
-            $TABLE->DECIMAL('subtotal', 10, 2);
-            $TABLE->STRING('status_pembayaran');
-            $TABLE->STRING('metode_pembayaran'); 
-            $TABLE->INTEGER('jumlah_penumpang');
+            $TABLE->TIME('waktu_keberangkatan')->nullable(); 
             $TABLE->STRING('nomor_kursi')->nullable(); 
-            $TABLE->TEXT('catatan_tambahan')->nullable(); 
+            $TABLE->STRING('nomor_kendaraan')->nullable(); 
+            $TABLE->STRING('kelas')->nullable();
+            $TABLE->INTEGER('jumlah_penumpang_terdaftar')->default(0); 
+            $TABLE->DECIMAL('subtotal', 10, 2)->nullable(); 
+            $TABLE->STRING('metode_pembayaran')->nullable(); 
+            $TABLE->STRING('status_pembayaran')->nullable(); 
             $TABLE->timestamps();
         });
     }

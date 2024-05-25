@@ -136,27 +136,57 @@
             <!-- Page Heading -->
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Buat Tiket KBT</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Edit Tiket KBT</h1>
                 </div>
                 <!-- Form untuk mengedit data detail tiket -->
-                <form action="{{ route('admin.detail_tiket.update', $detail->id) }}" method="POST">
+                <form action="{{ route('admin.update_tiket', $detail->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <label for="asal_keberangkatan">Asal Keberangkatan</label>
                     <select id="asal_keberangkatan" name="asal_keberangkatan" required>
-                        <!-- Pilihan asal keberangkatan -->
+                        <option value="">Pilih Asal Keberangkatan</option>
+                        <option value="Medan">Medan</option>
+                        <option value="Lubuk Pakam">Lubuk Pakam</option>
+                        <option value="Perbaungan">Perbaungan</option>
+                        <option value="Sei Rampah">Sei Rampah</option>
+                        <option value="Tebing Tinggi">Tebing Tinggi</option>
+                        <option value="Pematang Siantar">Pematang Siantar</option>
+                        <option value="Seribu Dolok">Seribu Dolok</option>
+                        <option value="Parapat">Parapat</option>
+                        <option value="Lumban Djulu">Lumban Djulu</option>
+                        <option value="Porsea">Porsea</option>
+                        <option value="Laguboti">Laguboti</option>
+                        <option value="Balige">Balige</option>
+                        <option value="Siborong-borong">Siborong-borong</option>
+                        <option value="Tarutung">Tarutung</option>
                     </select>
                     <br>
 
                     <label for="tujuan_keberangkatan">Tujuan Keberangkatan</label>
                     <select id="tujuan_keberangkatan" name="tujuan_keberangkatan" required>
-                        <!-- Pilihan tujuan keberangkatan -->
+                        <option value="">Pilih Tujuan Keberangkatan</option>
+                        <option value="Medan">Medan</option>
+                        <option value="Lubuk Pakam">Lubuk Pakam</option>
+                        <option value="Perbaungan">Perbaungan</option>
+                        <option value="Sei Rampah">Sei Rampah</option>
+                        <option value="Tebing Tinggi">Tebing Tinggi</option>
+                        <option value="Pematang Siantar">Pematang Siantar</option>
+                        <option value="Seribu Dolok">Seribu Dolok</option>
+                        <option value="Parapat">Parapat</option>
+                        <option value="Lumban Djulu">Lumban Djulu</option>
+                        <option value="Porsea">Porsea</option>
+                        <option value="Laguboti">Laguboti</option>
+                        <option value="Balige">Balige</option>
+                        <option value="Siborong-borong">Siborong-borong</option>
+                        <option value="Tarutung">Tarutung</option>
                     </select>
                     <br>
 
                     <label for="kelas">Kelas</label>
                     <select id="kelas" name="kelas" required>
-                        <!-- Pilihan kelas -->
+                        <option value="" disabled selected>Pilih Kelas KBT</option>
+                        <option value="Reguler">Reguler</option>
+                        <option value="Executive">Executive</option>
                     </select>
                     <br>
 

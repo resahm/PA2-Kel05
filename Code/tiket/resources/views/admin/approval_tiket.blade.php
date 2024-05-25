@@ -102,6 +102,16 @@
         .text-purple {
             color: #800080;
         }
+
+        .btn-accept {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+            color: white;
+        }
     </style>
 </head>
 
@@ -139,6 +149,7 @@
                             <th>Kelas</th>
                             <th>Subtotal</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -151,6 +162,16 @@
                             <td>{{ $detail->kelas }}</td>
                             <td>{{ $detail->subtotal }}</td>
                             <td>{{ $detail->status }}</td>
+                            <td>
+                                <form action="{{ route('tickets.accept', $detail->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-accept">Terima</button>
+                                </form>
+                                <form action="{{ route('tickets.reject', $detail->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-reject">Tolak</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endif

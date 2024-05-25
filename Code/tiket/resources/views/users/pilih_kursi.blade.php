@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiket</title>
+    <title>Pilih Kursi</title>
     <link rel="icon" href="{{ asset('assets/img/kbt.png') }}" type="image/png">
 
     <!-- Link to Bootstrap CSS from CDN -->
@@ -32,282 +32,177 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
-    <style>
-        .post-entry {
-            height: 300px;
-            /* Atur tinggi post-entry */
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
-        }
+    <link href="{{ asset('assets/css/pilih_kursi.css') }}" rel="stylesheet">
 
-        .d-block.mb-4 {
-            width: 100%;
-            height: 100%;
-            /* Mengisi tinggi parent (post-entry) */
-            object-fit: cover;
-            /* Mengatur gambar agar sesuai dengan ukuran parent */
-            border-radius: 10px;
-        }
-
-        .post-text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.45);
-            /* Memberi latar belakang putih semi-transparan */
-            border-radius: 0 0 10px 10px;
-        }
-
-        .post-meta {
-            display: block;
-            margin-bottom: 10px;
-            color:#222
-        }
-
-        h3 {
-            margin-bottom: 10px;
-            color: #444;
-            /* Warna judul */
-        }
-
-        p {
-            margin-bottom: 0;
-            color: #777;
-            /* Warna teks */
-        }
-    </style>
 </head>
 
 <body>
 
     @include('partials.header2')
 
+    <div class="container2">
 
-    <main id="main">
-        <!-- ======= Hero Section ======= -->
-        <section class="hero-section" id="hero">
+        <div class="table-responsive mb-4">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Tanggal Keberangkatan</th>
+                        <th>Asal Keberangkatan</th>
+                        <th>Tujuan Keberangkatan</th>
+                        <th>Jumlah Penumpang</th>
+                        <th>Waktu Keberangkatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $latestTicket->tanggal_pemesanan }}</td>
+                        <td>{{ $latestTicket->tanggal_keberangkatan }}</td>
+                        <td>{{ $latestTicket->asal_keberangkatan }}</td>
+                        <td>{{ $latestTicket->tujuan_keberangkatan }}</td>
+                        <td>{{ $latestTicket->jumlah_penumpang }}</td>
+                        <td>{{ $latestTicket->waktu_keberangkatan }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="content-container">
-                <div class="content">
-                    <section class="page-single mt-100 mb-100">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3">
-                                    <div class="ticket-info">
-                                        <form>
-                                            <label for="tanggal_pemesanan">Tanggal Pemesanan</label><br>
-                                            <input type="date" id="tanggal_pemesanan" name="tanggal_pemesanan"><br><br>
-                                            <label for="tanggal_keberangkatan">Tanggal Keberangkatan</label><br>
-                                            <input type="date" id="tanggal_keberangkatan" name="tanggal_keberangkatan"><br><br>
-                                            <label for="asal_keberangkatan">Asal Keberangkatan</label><br>
-                                            <select id="asal_keberangkatan" name="asal_keberangkatan" required>
-                                                <option value="">Pilih Asal Keberangkatan</option>
-                                                <option value="Medan">Medan</option>
-                                                <option value="Lubuk Pakam">Lubuk Pakam</option>
-                                                <option value="Perbaungan">Perbaungan</option>
-                                                <option value="Sei Rampah">Sei Rampah</option>
-                                                <option value="Tebing Tinggi">Tebing Tinggi</option>
-                                                <option value="Pematang Siantar">Pematang Siantar</option>
-                                                <option value="Seribu Dolok">Seribu Dolok</option>
-                                                <option value="Parapat">Parapat</option>
-                                                <option value="Lumban Djulu">Lumban Djulu</option>
-                                                <option value="Porsea">Porsea</option>
-                                                <option value="Lubuk Pakam">Laguboti</option>
-                                                <option value="Balige">Balige</option>
-                                                <option value="Siborong-borong">Siborong-borong</option>
-                                                <option value="Tarutung">Tarutung</option>
-                                            </select><br><br>
-                                            <label for="tujuan">Tujuan</label><br>
-                                            <select id="tujuan_keberangkatan" name="tujuan_keberangkatan" required>
-                                                <option value="">Pilih Tujuan Keberangkatan</option>
-                                                <option value="Medan">Medan</option>
-                                                <option value="Lubuk Pakam">Lubuk Pakam</option>
-                                                <option value="Perbaungan">Perbaungan</option>
-                                                <option value="Sei Rampah">Sei Rampah</option>
-                                                <option value="Tebing Tinggi">Tebing Tinggi</option>
-                                                <option value="Pematang Siantar">Pematang Siantar</option>
-                                                <option value="Seribu Dolok">Seribu Dolok</option>
-                                                <option value="Parapat">Parapat</option>
-                                                <option value="Lumban Djulu">Lumban Djulu</option>
-                                                <option value="Porsea">Porsea</option>
-                                                <option value="Lubuk Pakam">Laguboti</option>
-                                                <option value="Balige">Balige</option>
-                                                <option value="Siborong-borong">Siborong-borong</option>
-                                                <option value="Tarutung">Tarutung</option>
-                                            </select><br><br>
-                                            <label for="jumlah_penumpang">Jumlah Penumpang</label><br>
-                                            <input type="number" id="jumlah_penumpang" name="jumlah_penumpang"><br><br>
-                                            <input type="submit" value="Submit">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+        <form action="{{ route('users.store_pilih_kursi') }}" method="POST">
+            @csrf
+            <input type="hidden" id="ticket_id" name="ticket_id" value="{{ $latestTicket->id }}">
+            <input type="hidden" id="nomor_kursi" name="nomor_kursi" value="">
+            <div class="bus-top-view">
+                <h2>Pilih Kursi</h2>
+                <div class="seat-row">
+                    <div class="seat green" data-seat-number="1" onclick="bookSeat(1)">1</div>
+                    <div class="seat green" data-seat-number="2" onclick="bookSeat(2)">2</div>
+                    <div class="seat black">S</div>
+                </div>
+
+                <div class="seat-row">
+                    <div class="seat green" data-seat-number="3" onclick="bookSeat(3)">3</div>
+                    <div class="seat green" data-seat-number="4" onclick="bookSeat(4)">4</div>
+                    <div class="seat green" data-seat-number="5" onclick="bookSeat(5)">5</div>
+                </div>
+                <div class="seat-row">
+                    <div class="seat green" data-seat-number="6" onclick="bookSeat(6)">6</div>
+                    <div class="seat green" data-seat-number="7" onclick="bookSeat(7)">7</div>
+                    <div class="seat green" data-seat-number="8" onclick="bookSeat(8)">8</div>
+                </div>
+                <div class="seat-row">
+                    <div class="seat green" data-seat-number="9" onclick="bookSeat(9)">9</div>
+                    <div class="seat green" data-seat-number="10" onclick="bookSeat(10)">10</div>
+                    <div class="seat green" data-seat-number="11" onclick="bookSeat(11)">11</div>
+                </div>
+                <div class="seat-row">
+                    <div class="seat orange">X</div>
                 </div>
             </div>
-        </section><!-- End Hero -->
-        <!-- ======= Home Section ======= -->
-        <section>
-            <div class="container">
-
-                <div class="row justify-content-center text-center mb-5">
-                    <div class="col-md-5" data-aos="fade-up">
-                        <h2 class="section-heading">Kami Hadir Di Kota Besar</h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/medan.jpeg') }}" alt="medan" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">MEDAN</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/tebing.jpeg') }}" alt="tebing" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Tebing Tinggi</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/pematang.png') }}" alt="siantar" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Pematang Siantar</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/parapat.jpeg') }}" alt="parapat" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Parapat</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/porsea.jpeg') }}" alt="porsea" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Porsea</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/laguboti.jpeg') }}" alt="laguboti" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Laguboti</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/balige.jpeg') }}" alt="balige" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Balige</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/siborongborong.jpeg') }}" alt="siborongborong" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Siborongborong</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <img src="{{ url('assets/img/tarutung.jpeg') }}" alt="" style="height: 200px; padding: 20px;">
-                            </div>
-                            <h3 class="text-center mb-3">Tarutung</h3>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="notes">
+                <p>Ket :</p>
+                <p><span class="color-box green"></span> = Kursi kosong</p>
+                <p><span class="color-box red"></span> = Kursi sudah di booking</p>
+                <p><span class="color-box orange"></span> = Tempat Barang atau Paket</p>
             </div>
-        </section>
-
-        <section class="section border-top border-bottom">
-            <div class="container">
-                <div class="row justify-content-center text-center mb-5">
-                    <div class="col-md-4">
-                        <h2 class="section-heading">Informasi</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center text-center">
-                    <div class="col-md-6">
-                        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                            <div class="swiper-slide">
-                                <div class="row">
-                                    @php $counter = 0; @endphp
-                                    @foreach ($informasi as $item)
-                                    <div class="col-md-6">
-                                        <div class="review">
-                                            <div class="post-entry">
-                                                <a class="d-block mb-4">
-                                                    <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid">
-                                                </a>
-                                                <div class="post-text">
-                                                    <span class="post-meta">{{ $item->created_at }}</span>
-                                                    <h3><a>{{ $item->judul }}</a></h3>
-                                                    <div class="description" style="max-height: 100px; overflow: hidden;">
-                                                        <p>{{ $item->deskripsi }}</p>
-                                                    </div>
-                                                    @if (strlen($item->deskripsi) > 100)
-                                                    <a class="show-more-btn">Show more</a>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            <script>
-                                                document.querySelectorAll('.show-more-btn').forEach(button => {
-                                                    button.addEventListener('click', function() {
-                                                        const description = this.parentElement.querySelector('.description');
-                                                        description.style.maxHeight = null;
-                                                        this.style.display = 'none';
-                                                    });
-                                                });
-                                            </script>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <label for="nomor_kendaraan" class="form-label">Nomor Kendaraan</label>
+                <select id="nomor_kendaraan" name="nomor_kendaraan" class="form-select" required>
+                    <option value="" disabled selected>Pilih KBT</option>
+                    <option value="448">448</option>
+                    <option value="648">648</option>
+                    <option value="684">684</option>
+                    <option value="711">711</option>
+                    <option value="725">725</option>
+                    <option value="939">939</option>
+                    <option value="977">977</option>
+                </select>
             </div>
-        </section><!-- End Testimonials Section -->
-    </main>
+            <div class="mb-3">
+                <label for="kelas" class="form-label">Kelas</label>
+                <select id="kelas" name="kelas" class="form-select" required>
+                    <option value="" disabled selected>Pilih Kelas KBT</option>
+                    <option value="Reguler">Reguler</option>
+                    <option value="Executive">Executive</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Pilih</button>
+        </form>
+    </div>
 
     @include('partials.footer2')
 
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/aos/aos.js')}}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+    <!-- Include Bootstrap JavaScript from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/jumlah-penumpang-terakhir',
+                method: 'GET',
+                success: function(response) {
+                    const jumlahPenumpang = response.jumlah_penumpang;
+                    let selectedSeatsCount = 0;
+                    let selectedSeatsArray = [];
 
-    <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main2.js')}}"></script>
+                    function bookSeat(seatNumber) {
+                        if (selectedSeatsCount >= jumlahPenumpang) {
+                            alert(`Anda sudah memilih ${jumlahPenumpang} kursi. Tidak bisa memilih lebih dari itu.`);
+                            return;
+                        }
 
+                        const confirmBooking = confirm(`Apakah Anda yakin ingin memesan kursi nomor ${seatNumber}?`);
+                        if (confirmBooking) {
+                            const seatElement = document.querySelector(`.seat[data-seat-number="${seatNumber}"]`);
+                            if (seatElement && !seatElement.classList.contains('red')) {
+                                seatElement.classList.remove('green');
+                                seatElement.classList.add('red');
+                                selectedSeatsCount++;
+                                selectedSeatsArray.push(seatNumber.toString());
+                                document.getElementById('nomor_kursi').value = selectedSeatsArray.join(',');
+                            }
+                        }
+                    }
+
+                    // Attach event listeners to seat elements
+                    const seats = document.querySelectorAll('.seat.green');
+                    seats.forEach(seat => {
+                        seat.addEventListener('click', function() {
+                            const seatNumber = this.getAttribute('data-seat-number');
+                            bookSeat(seatNumber);
+                        });
+                    });
+                },
+                error: function(error) {
+                    console.error('Error fetching jumlah penumpang:', error);
+                }
+            });
+
+            // Fetch booked seats and disable them
+            $.ajax({
+                url: '/fetch-booked-seats',
+                method: 'GET',
+                data: {
+                    tanggal_keberangkatan: "{{ $latestTicket->tanggal_keberangkatan }}",
+                    waktu_keberangkatan: "{{ $latestTicket->waktu_keberangkatan }}",
+                    nomor_kendaraan: "{{ $latestTicket->nomor_kendaraan }}",
+                    kelas: "{{ $latestTicket->kelas }}"
+                },
+                success: function(response) {
+                    const bookedSeats = response.booked_seats;
+                    bookedSeats.forEach(seatNumber => {
+                        const seatElement = document.querySelector(`.seat[data-seat-number="${seatNumber}"]`);
+                        if (seatElement) {
+                            seatElement.classList.remove('green');
+                            seatElement.classList.add('red');
+                            seatElement.removeEventListener('click', bookSeat);
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.error('Error fetching booked seats:', error);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

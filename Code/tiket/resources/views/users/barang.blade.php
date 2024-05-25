@@ -178,7 +178,7 @@
                     <input type="text" id="name_penerima" name="name_penerima" required>
                     <br>
 
-                    <label for="deskripsi">Deskripsi</label>
+                    <label for="deskripsi">Deskripsi <b style="color: red;">*Alamat Tujuan Paket</b></label>
                     <textarea id="deskripsi" name="deskripsi" required></textarea>
                     <br>
 
@@ -189,6 +189,22 @@
                     <label for="waktu_keberangkatan">Waktu Keberangkatan</label>
                     <input type="date" id="waktu_keberangkatan" name="waktu_keberangkatan">
                     <br>
+
+                    <script>
+                        // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+                        function getTodayDate() {
+                            const today = new Date();
+                            const yyyy = today.getFullYear();
+                            const mm = String(today.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                            const dd = String(today.getDate()).padStart(2, '0');
+                            return `${yyyy}-${mm}-${dd}`;
+                        }
+
+                        // Set nilai minimum untuk tanggal pemesanan dan tanggal keberangkatan
+                        const todayDate = getTodayDate();
+                        document.getElementById('waktu_kedatangan').setAttribute('min', todayDate);
+                        document.getElementById('waktu_keberangkatan').setAttribute('min', todayDate);
+                    </script>
 
                     <button type="submit"><i class="fas fa-box"></i> Submit</button>
                 </form>

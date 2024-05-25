@@ -32,6 +32,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <style>
         .post-entry {
             height: 300px;
@@ -56,14 +57,9 @@
             left: 0;
             right: 0;
             padding: 15px;
-            background-color: rgba(255, 255, 255, 0.45);
+            background-color: rgba(0, 0, 240, 0.1);
             /* Memberi latar belakang putih semi-transparan */
             border-radius: 0 0 10px 10px;
-        }
-
-        .post-meta {
-            display: block;
-            margin-bottom: 10px;
         }
 
         h3 {
@@ -96,11 +92,107 @@
                             <div class="row">
                                 <div class="col-md-6 offset-md-3">
                                     <div class="ticket-info">
-                                        <form>
-                                            <label for="tanggal_pemesanan">Tanggal Pemesanan</label><br>
-                                            <input type="date" id="tanggal_pemesanan" name="tanggal_pemesanan"><br><br>
-                                            <label for="tanggal_keberangkatan">Tanggal Keberangkatan</label><br>
-                                            <input type="date" id="tanggal_keberangkatan" name="tanggal_keberangkatan"><br><br>
+                                        <form method="POST" action="{{ route('users.tickets.store') }}">
+                                            @csrf
+                                            <label for="display_tanggal_pemesanan">Tanggal Pemesanan</label><br>
+                                            <input type="text" id="display_tanggal_pemesanan" readonly><br><br>
+                                            <input type="date" id="tanggal_pemesanan" class="hidden" name="tanggal_pemesanan"><br><br>
+
+                                            <label for="display_tanggal_keberangkatan">Tanggal Keberangkatan</label><br>
+                                            <input type="text" id="display_tanggal_keberangkatan" readonly><br><br>
+                                            <input type="date" id="tanggal_keberangkatan" class="hidden" name="tanggal_keberangkatan"><br><br>
+
+                                            <script>
+                                                // Fungsi untuk mendapatkan nama hari dalam bahasa Indonesia
+                                                function getDayName(dateString) {
+                                                    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+                                                    const date = new Date(dateString);
+                                                    return days[date.getDay()];
+                                                }
+
+                                                // Fungsi untuk memformat tanggal dalam format 'HH, DD-MM-YYYY'
+                                                function formatDate(dateString) {
+                                                    const date = new Date(dateString);
+                                                    const dayName = getDayName(dateString);
+                                                    const dd = String(date.getDate()).padStart(2, '0');
+                                                    const mm = String(date.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                                                    const yyyy = date.getFullYear();
+                                                    return `${dayName}, ${dd}-${mm}-${yyyy}`;
+                                                }
+
+                                                // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+                                                function getTodayDate() {
+                                                    const today = new Date();
+                                                    const dd = String(today.getDate()).padStart(2, '0');
+                                                    const mm = String(today.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                                                    const yyyy = today.getFullYear();
+                                                    return `${yyyy}-${mm}-${dd}`;
+                                                }
+
+                                                // Set nilai minimum untuk tanggal pemesanan
+                                                const todayDate = getTodayDate();
+                                                const tanggalPemesanan = document.getElementById('tanggal_pemesanan');
+                                                const tanggalKeberangkatan = document.getElementById('tanggal_keberangkatan');
+                                                const displayTanggalPemesanan = document.getElementById('display_tanggal_pemesanan');
+                                                const displayTanggalKeberangkatan = document.getElementById('display_tanggal_keberangkatan');
+
+                                                tanggalPemesanan.setAttribute('min', todayDate);
+                                                tanggalKeberangkatan.setAttribute('min', todayDate);
+
+                                                // Tambahkan event listener untuk tanggal pemesanan
+                                                tanggalPemesanan.addEventListener('change', function() {
+                                                    const selectedDate = tanggalPemesanan.value;
+                                                    if (selectedDate) {
+                                                        tanggalKeberangkatan.setAttribute('min', selectedDate);
+                                                        displayTanggalPemesanan.value = formatDate(selectedDate);
+                                                    } else {
+                                                        tanggalKeberangkatan.setAttribute('min', todayDate);
+                                                        displayTanggalPemesanan.value = '';
+                                                    }
+                                                });
+
+                                                // Tambahkan event listener untuk tanggal keberangkatan
+                                                tanggalKeberangkatan.addEventListener('change', function() {
+                                                    const selectedDate = tanggalKeberangkatan.value;
+                                                    if (selectedDate) {
+                                                        displayTanggalKeberangkatan.value = formatDate(selectedDate);
+                                                    } else {
+                                                        displayTanggalKeberangkatan.value = '';
+                                                    }
+                                                });
+
+                                                // Tambahkan event listener untuk mencegah input manual
+                                                tanggalPemesanan.addEventListener('input', function() {
+                                                    if (tanggalPemesanan.value < todayDate) {
+                                                        tanggalPemesanan.value = todayDate;
+                                                    }
+                                                });
+
+                                                tanggalKeberangkatan.addEventListener('input', function() {
+                                                    if (tanggalKeberangkatan.value < tanggalPemesanan.value) {
+                                                        tanggalKeberangkatan.value = tanggalPemesanan.value;
+                                                    }
+                                                });
+
+                                                // Tambahkan event listener untuk membuka input date ketika input teks diklik
+                                                displayTanggalPemesanan.addEventListener('focus', function() {
+                                                    tanggalPemesanan.click();
+                                                });
+
+                                                displayTanggalKeberangkatan.addEventListener('focus', function() {
+                                                    tanggalKeberangkatan.click();
+                                                });
+
+                                                // Tambahkan event listener untuk membuka input date ketika input teks diklik (untuk mobile)
+                                                displayTanggalPemesanan.addEventListener('click', function() {
+                                                    tanggalPemesanan.click();
+                                                });
+
+                                                displayTanggalKeberangkatan.addEventListener('click', function() {
+                                                    tanggalKeberangkatan.click();
+                                                });
+                                            </script>
+
                                             <label for="asal_keberangkatan">Asal Keberangkatan</label><br>
                                             <select id="asal_keberangkatan" name="asal_keberangkatan" required>
                                                 <option value="">Pilih Asal Keberangkatan</option>
@@ -119,7 +211,7 @@
                                                 <option value="Siborong-borong">Siborong-borong</option>
                                                 <option value="Tarutung">Tarutung</option>
                                             </select><br><br>
-                                            <label for="tujuan">Tujuan</label><br>
+                                            <label for="tujuan">Tujuan Keberangkatan</label><br>
                                             <select id="tujuan_keberangkatan" name="tujuan_keberangkatan" required>
                                                 <option value="">Pilih Tujuan Keberangkatan</option>
                                                 <option value="Medan">Medan</option>
@@ -138,7 +230,7 @@
                                                 <option value="Tarutung">Tarutung</option>
                                             </select><br><br>
                                             <label for="jumlah_penumpang">Jumlah Penumpang</label><br>
-                                            <input type="number" id="jumlah_penumpang" name="jumlah_penumpang"><br><br>
+                                            <input type="number" id="jumlah_penumpang" name="jumlah_penumpang" max="11"><br><br>
                                             <input type="submit" value="Submit">
                                         </form>
                                     </div>
@@ -149,22 +241,13 @@
                 </div>
             </div>
         </section><!-- End Hero -->
-        <script>
-            document.getElementById('ticketForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                // Process the form data here if needed
-
-                // Redirect to users.info_pelanggan page
-                window.location.href = '/users.info_pelanggan';
-            });
-        </script>
         <!-- ======= Home Section ======= -->
         <section>
             <div class="container">
 
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-md-5" data-aos="fade-up">
-                        <h2 class="section-heading">Kami Hadir Di Kota Besar</h2>
+                        <h2 class="section-heading">KBT Siap Melayani Perjalanan Anda</h2>
                     </div>
                 </div>
 
@@ -270,16 +353,16 @@
                                         <div class="review">
                                             <div class="post-entry">
                                                 <a class="d-block mb-4">
+                                                    <span class="post-meta">{{ $item->created_at }}</span>
                                                     <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid">
                                                 </a>
                                                 <div class="post-text">
-                                                    <span class="post-meta">{{ $item->created_at }}</span>
                                                     <h3><a>{{ $item->judul }}</a></h3>
-                                                    <div class="description" style="max-height: 100px; overflow: hidden;">
+                                                    <div class="description" style="max-height: 100px; overflow: hidden; text-align: justify; text-align-last: left;">
                                                         <p>{{ $item->deskripsi }}</p>
                                                     </div>
                                                     @if (strlen($item->deskripsi) > 100)
-                                                    <a class="show-more-btn">Show more</a>
+                                                    <a class="show-more-btn">show more</a>
                                                     @endif
                                                 </div>
                                             </div>

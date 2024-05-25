@@ -62,13 +62,15 @@
                                         <th>Tanggal Keberangkatan</th>
                                         <th>Waktu Keberangkatan</th>
                                         <th>Asal Keberangkatan</th>
-                                        <th>Tujuan</th>
-                                        <th>Kelas</th>
-                                        <th>Status Pembayaran</th>
-                                        <th>Metode Pembayaran</th>
+                                        <th>Tujuan Keberangkatan</th>
                                         <th>Jumlah Penumpang</th>
                                         <th>Nomor Kursi</th>
-                                        <th>Catatan Tambahan</th>
+                                        <th>Nomor KBT</th>
+                                        <th>Kelas</th>
+                                        <th>Terdaftar</th>
+                                        <th>Total Pembayaran</th>
+                                        <th>Metode Pembayaran</th>
+                                        <th>Status Pembayaran</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,13 +82,15 @@
                                         <td>{{ $ticket->tanggal_keberangkatan }}</td>
                                         <td>{{ $ticket->waktu_keberangkatan }}</td>
                                         <td>{{ $ticket->asal_keberangkatan }}</td>
-                                        <td>{{ $ticket->tujuan }}</td>
-                                        <td>{{ $ticket->kelas }}</td>
-                                        <td>{{ $ticket->status_pembayaran }}</td>
-                                        <td>{{ $ticket->metode_pembayaran }}</td>
+                                        <td>{{ $ticket->tujuan_keberangkatan }}</td>
                                         <td>{{ $ticket->jumlah_penumpang }}</td>
                                         <td>{{ $ticket->nomor_kursi }}</td>
-                                        <td>{{ $ticket->catatan_tambahan }}</td>
+                                        <td>{{ $ticket->nomor_kendaraan }}</td>
+                                        <td>{{ $ticket->kelas }}</td>
+                                        <td>{{ $ticket->jumlah_penumpang_terdaftar }} </td>
+                                        <td>{{ $ticket->subtotal }}</td>
+                                        <td>{{ $ticket->metode_pembayaran }}</td>
+                                        <td>{{ $ticket->status_pembayaran }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

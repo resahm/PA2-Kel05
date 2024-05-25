@@ -24,14 +24,6 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
 
-    <style>
-        /* CSS untuk aturan email dan password */
-        .input-field p {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 5px;
-        }
-    </style>
 </head>
 
 <body>
@@ -40,38 +32,40 @@
         <div class="card">
             <div class="card-body">
                 <div class="login">
-                    <h3>Login</h3>
+                    <h3>Login Member</h3>
                     <p>Selamat Datang</p>
+                    @if(session('success'))
+                    <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         {{ $errors->first() }}
                     </div>
                     @endif
-                    <form method="POST" action="{{ route("guest.login") }}">
+                    <form method="POST" action=" {{ route("guest.login") }} ">
                         @csrf
                         <div class="input-field">
                             <label for="email">EMAIL</label>
                             <input type="email" id="email" name="email" required>
-                            <p>Email harus valid dan terdaftar.</p> <!-- Aturan email -->
                         </div>
                         <div class="input-field">
                             <label for="password">PASSWORD</label>
                             <input type="password" id="password" name="password" required>
                             <i class="password-toggle far fa-eye" onclick="togglePasswordVisibility('password')"></i>
-                            <p>Password harus memiliki setidaknya 8 karakter.</p> <!-- Aturan password -->
                         </div>
                         <script>
                             function togglePasswordVisibility(inputId) {
                                 var passwordInput = document.getElementById(inputId);
-                                var toggleIcon = passwordInput.nextElementSibling;
                                 if (passwordInput.type === 'password') {
                                     passwordInput.type = 'text';
-                                    toggleIcon.classList.remove('fa-eye');
-                                    toggleIcon.classList.add('fa-eye-slash');
+                                    document.querySelector('.password-toggle').classList.remove('fa-eye');
+                                    document.querySelector('.password-toggle').classList.add('fa-eye-slash');
                                 } else {
                                     passwordInput.type = 'password';
-                                    toggleIcon.classList.remove('fa-eye-slash');
-                                    toggleIcon.classList.add('fa-eye');
+                                    document.querySelector('.password-toggle').classList.remove('fa-eye-slash');
+                                    document.querySelector('.password-toggle').classList.add('fa-eye');
                                 }
                             }
                         </script>
@@ -83,6 +77,16 @@
         </div>
     </div>
     @include('partials.footer')
+
+    <script>
+        // Ambil alert yang memiliki id 'alert'
+        var alert = document.getElementById('alert');
+
+        // Setelah 3 detik, sembunyikan alert secara otomatis
+        setTimeout(function() {
+            alert.classList.add('d-none');
+        }, 1500); 
+    </script>
 
     <!-- Link to Bootstrap JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -96,7 +100,6 @@
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
 
-    <script src="scripts.js"></script>
 </body>
 
 </html>

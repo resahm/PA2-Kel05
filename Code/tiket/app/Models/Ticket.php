@@ -14,13 +14,15 @@ class Ticket extends Model
         'tanggal_keberangkatan',
         'waktu_keberangkatan',
         'asal_keberangkatan',
-        'tujuan',
-        'kelas',
-        'status_pembayaran',
-        'metode_pembayaran',
+        'tujuan_keberangkatan',
         'jumlah_penumpang',
         'nomor_kursi',
-        'catatan_tambahan',
+        'nomor_kendaraan',
+        'kelas',
+        'jumlah_penumpang_terdaftar',
+        'subtotal',
+        'metode_pembayaran',
+        'status_pembayaran',
     ];
 
     // Definisikan relasi dengan model User

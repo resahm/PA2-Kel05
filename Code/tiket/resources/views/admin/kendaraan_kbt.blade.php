@@ -172,8 +172,9 @@
                                 <th>User ID</th>
                                 <th>Nomor Kendaraan</th>
                                 <th>Nomor Kursi</th>
-                                <th>Total Kursi</th>
                                 <th>Kelas</th>
+                                <th>Total Kursi</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -183,8 +184,9 @@
                                 <td>{{ $detail->user_id }}</td>
                                 <td>{{ $detail->nomor_kendaraan }}</td>
                                 <td>{{ $detail->nomor_kursi }}</td>
-                                <td>{{ $detail->total_kursi }}</td>
                                 <td>{{ $detail->kelas }}</td>
+                                <td>{{ $detail->total_kursi }}</td>
+                                <td>{{ $detail->status }}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -98,24 +98,102 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
                 <i class="password-toggle far fa-eye" onclick="togglePasswordVisibility('password')"></i>
-                @error('password')
-                <div class="invalid-feedback" style="display: block;">{{ $message }}</div>
-                @else
-                <div class="form-text">Password terdiri dari 8 perpaduan kata dengan huruf besar, huruf kecil, dan angka.</div>
-                @enderror
+                <div id="passwordError" class="invalid-feedback"></div>
             </div>
+
             <div class="input-field">
                 <label for="confirmPassword">Konfirmasi Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
                 <i class="password-toggle far fa-eye" onclick="togglePasswordVisibility('confirmPassword')"></i>
                 <div id="confirmPasswordError" class="invalid-feedback"></div>
             </div>
-            <input type="submit" value="Registrasi" class="mt-3">
+            <input type="submit" value="Registrasi" class="btn btn-primary">
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Link to Bootstrap JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets/js/form.js') }}"></script>
+    <script>
+        // Fungsi untuk menampilkan pesan error pada elemen dengan id yang sesuai
+        function displayError(inputId, errorMessage) {
+            var errorElement = document.getElementById(inputId + 'Error');
+            errorElement.innerText = errorMessage;
+            errorElement.style.display = 'block';
+        }
+
+        // Fungsi untuk menyembunyikan pesan error pada elemen dengan id yang sesuai
+        function hideError(inputId) {
+            var errorElement = document.getElementById(inputId + 'Error');
+            errorElement.innerText = '';
+            errorElement.style.display = 'none';
+        }
+
+        // Fungsi untuk validasi form
+        function validateForm() {
+            var isValid = true;
+
+            // Validasi Nama Lengkap
+            var name = document.getElementById('nama').value;
+            if (!name.match(/^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/)) {
+                displayError('nama', 'Nama harus diawali dengan huruf besar dan hanya mengandung huruf kecil setelahnya.');
+                isValid = false;
+            } else {
+                hideError('nama');
+            }
+
+            // Validasi No. HP
+            var phone = document.getElementById('noHp').value;
+            if (!phone.match(/^\d{12}$/)) {
+                displayError('noHp', 'Nomor HP harus terdiri dari 12 angka.');
+                isValid = false;
+            } else {
+                hideError('noHp');
+            }
+
+            // Validasi Email
+            var email = document.getElementById('email').value;
+            if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+                displayError('email', 'Format email tidak valid.');
+                isValid = false;
+            } else {
+                hideError('email');
+            }
+
+            // Validasi Nomor Identitas
+            var identityNumber = document.getElementById('nomorIdentitas').value;
+            if (!identityNumber.match(/^\d{16}$/)) {
+                displayError('nomorIdentitas', 'Nomor Identitas harus terdiri dari 16 angka.');
+                isValid = false;
+            } else {
+                hideError('nomorIdentitas');
+            }
+
+            // Validasi Password
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                displayError('password', 'Password dan Konfirmasi Password harus sama.');
+                isValid = false;
+            } else {
+                hideError('password');
+            }
+
+            return isValid;
+        }
+
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                document.getElementById(inputId).nextElementSibling.classList.remove('fa-eye');
+                document.getElementById(inputId).nextElementSibling.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                document.getElementById(inputId).nextElementSibling.classList.remove('fa-eye-slash');
+                document.getElementById(inputId).nextElementSibling.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 
 </html>
