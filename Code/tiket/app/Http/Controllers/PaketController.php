@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Paket; 
+use App\Models\Paket;
 
 class PaketController extends Controller
 {
@@ -42,7 +42,12 @@ class PaketController extends Controller
         // Simpan data ke dalam tabel
         $paket->save();
 
-        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
-        return redirect()->back()->with('success', 'Paket berhasil dibuat.');
+        // Redirect ke halaman admin.payment_paket dengan pesan sukses
+        return redirect()->route('admin.payment_paket')->with('success', 'Paket berhasil dibuat.');
     }
+    public function paymentPaket()
+    {
+        return view('admin.payment_paket');
+    }
+
 }

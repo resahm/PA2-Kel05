@@ -88,7 +88,8 @@ Route::middleware(['auth:admin'])->group(function () {
 
     // Paket Routes
     Route::get('/admin/tabel_paket', [PaketController::class, 'index'])->name('admin.tabel_paket');
-    Route::get('admin/payment_paket', [PaketController::class, 'paymentPaket'])->name('admin.payment_paket');
+    Route::post('/admin/tabel_paket', [PaketController::class, 'store'])->name('admin.tabel_paket.store');
+    Route::get('/admin/payment_paket', [PaketController::class, 'paymentPaket'])->name('admin.payment_paket');
 
     // Kendaraan Routes
     Route::get('/admin/kendaraan', [KendaraanController::class, 'index'])->name('admin.kendaraan_kbt');
