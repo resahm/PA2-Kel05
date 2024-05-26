@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('detail_kendaraan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nomor_kendaraan')->unique();
+            $table->string('nomor_kendaraan'); // Tidak perlu unique karena bisa ada banyak tiket untuk satu kendaraan
             $table->string('nomor_kursi')->nullable(); 
-            $table->string('status'); 
             $table->integer('total_kursi');
             $table->string('kelas');
+            $table->string('status'); // Status kendaraan atau kursi
             $table->timestamps();
         });
     }

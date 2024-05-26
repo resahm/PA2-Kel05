@@ -134,35 +134,45 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
                             <th>ID Ticket</th>
-                            <th>Amount</th>
-                            <th>Payment Method</th>
-                            <th>Payment Date</th>
-                            <th>Image</th>
+                            <th>Jumlah Pembayaran</th>
+                            <th>Metode Pembayaran</th>
+                            <th>Tanggal Pembayaran</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>Foto KTP</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        @if(isset($details))
-                        @foreach($details as $key => $detail)
+                        @foreach($payments as $key => $payment)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $payment->name }}</td>
+                            <td>{{ $payment->email }}</td>
                             <td>{{ $payment->ticket_id }}</td>
                             <td>{{ $payment->amount }}</td>
                             <td>{{ $payment->payment_method }}</td>
                             <td>{{ $payment->payment_date }}</td>
                             <td>
-                                @if($payment->image)
-                                <img src="{{ asset($payment->image) }}" alt="Payment Image" style="width: 100px; height: auto;">
+                                @if($payment->payment_proof)
+                                <img src="{{ asset($payment->payment_proof) }}" alt="Bukti Pembayaran" style="max-width: 100px; max-height: 100px;">
                                 @else
-                                No Image
+                                Tidak ada gambar
+                                @endif
+                            </td>
+                            <td>
+                                @if($payment->ktp_image)
+                                <img src="{{ asset($payment->ktp_image) }}" alt="Foto KTP" style="max-width: 100px; max-height: 100px;">
+                                @else
+                                Tidak ada gambar
                                 @endif
                             </td>
                         </tr>
                         @endforeach
-                        @endif
                     </tbody>
                 </table>
             </div>
-        </div>
         </div>
     </main>
 
@@ -181,7 +191,6 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js')}}"></script>
-
 </body>
 
 </html>

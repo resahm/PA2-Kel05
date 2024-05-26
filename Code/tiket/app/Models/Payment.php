@@ -19,4 +19,9 @@ class Payment extends Model
         'payment_proof',
         'ktp_image',
     ];
+
+    public function ticketApproval()
+    {
+        return $this->hasOne(TicketApproval::class, 'payment_id', 'id');
+    }
 }

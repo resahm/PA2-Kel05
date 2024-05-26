@@ -117,12 +117,12 @@
 
                 <div style="display: flex; justify-content: space-between;">
                     <div>
-                        <form action="{{ route('users.store_bukti_pembayaran_alt') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('users.store_bukti_pembayaran') }}" method="POST">
                             @csrf
                             <input type="hidden" name="ticket_id" value="{{ $latestTicket->id }}">
                             <input type="hidden" name="total_harga" value="{{ $totalHarga }}">
                             <input type="hidden" name="metode_pembayaran" value="{{ $metodePembayaran }}">
-                            <button type="submit" class="btn btn-primary">Isi Bukti Pembayaran</button>
+                            <button type="submit" class="btn btn-primary">Bukti Pembayaran</button>
                         </form>
                     </div>
                 </div>

@@ -16,4 +16,9 @@ class TicketApproval extends Model
         'subtotal',
         'status',
     ];
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
+    }
 }

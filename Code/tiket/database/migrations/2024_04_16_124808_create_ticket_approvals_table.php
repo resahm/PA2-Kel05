@@ -19,6 +19,10 @@ return new class extends Migration
             $table->DECIMAL('subtotal', 10, 2);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
+
+            // Menambahkan kunci asing payment_id jika ada relasi dengan tabel payments
+            $table->unsignedBigInteger('payment_id')->nullable();
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null');
         });
     }
 

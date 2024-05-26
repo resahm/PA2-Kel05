@@ -143,7 +143,7 @@
                             <th>Deskripsi</th>
                             <th>Waktu Kedatangan</th>
                             <th>Waktu Keberangkatan</th>
-                            <th>Actions</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

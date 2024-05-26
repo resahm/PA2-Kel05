@@ -140,41 +140,38 @@
 
                 <!-- Tabel untuk menampilkan data -->
 
+
                 <table border="1">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Email</th>
-                            <th>Kelas</th>
-                            <th>Subtotal</th>
+                            <th>Amount</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(isset($details))
-                        @foreach($details as $key => $detail)
+                        @foreach($approvals as $key => $approval)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $detail->name }}</td>
-                            <td>{{ $detail->email }}</td>
-                            <td>{{ $detail->kelas }}</td>
-                            <td>{{ $detail->subtotal }}</td>
-                            <td>{{ $detail->status }}</td>
+                            <td>{{ $approval->name }}</td>
+                            <td>{{ $approval->email }}</td>
+                            <td>{{ $approval->amount }}</td>
+                            <td>{{ $approval->status }}</td>
                             <td>
-                                <form action="{{ route('tickets.accept', $detail->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('payments.accept', $approval->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     <button type="submit" class="btn btn-accept">Terima</button>
                                 </form>
-                                <form action="{{ route('tickets.reject', $detail->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('payments.reject', $approval->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     <button type="submit" class="btn btn-reject">Tolak</button>
                                 </form>
                             </td>
                         </tr>
                         @endforeach
-                        @endif
                     </tbody>
                 </table>
             </div>

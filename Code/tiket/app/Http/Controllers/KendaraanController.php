@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetailKendaraan;
-use App\Models\Seat;
+use App\Models\Ticket;
+use Illuminate\Support\Facades\DB;
 
 class KendaraanController extends Controller
 {
@@ -13,33 +14,64 @@ class KendaraanController extends Controller
         $details = DetailKendaraan::all();
         return view('admin.kendaraan_kbt', compact('details'));
     }
-    public function bookSeat(Request $request)
+
+    public function updateStatus($id, $status)
     {
-        // Validasi request
-        $request->validate([
-            'nomor_kendaraan' => 'required',
-            'nomor_kursi' => 'required'
-        ]);
+        $detail = DetailKendaraan::find($id);
+        if (!$detail) {
+            return response()->json(['success' => false]);
+        }
 
-        // Dapatkan nomor kendaraan dan nomor kursi dari request
-        $nomor_kendaraan = $request->input('nomor_kendaraan');
-        $nomor_kursi = $request->input('nomor_kursi');
+        $detail->status = $status;
+        $detail->save();
 
-        // Cari kursi berdasarkan nomor kendaraan dan nomor kursi
-        $seat = Seat::where('nomor_kendaraan', $nomor_kendaraan)
+        return response()->json(['success' => true]);
+    }
+
+    public function bookSeat($seatNumber)
+    {
+        $detail = DetailKendaraan::where('nomor_kursi', $seatNumber)->first();
+        if (!$detail) {
+            return response()->json(['success' => false]);
+        }
+
+        // Handle booking logic here, e.g., update status or store booking info
+        // For simplicity, we'll just update the status to 'booked'
+        $detail->status = 'booked';
+        $detail->save();
+
+        return response()->json(['success' => true]);
+    }
+    public function syncTicketsToDetailKendaraan()
+    {
+        // Ambil semua tiket
+        $tickets = Ticket::all();
+
+        foreach ($tickets as $ticket) {
+            // Pisahkan nomor kursi jika ada lebih dari satu
+            $nomor_kursi_array = explode(',', $ticket->nomor_kursi);
+
+            foreach ($nomor_kursi_array as $nomor_kursi) {
+                // Periksa apakah sudah ada detail_kendaraan untuk tiket ini
+                $existingDetail = DetailKendaraan::where('nomor_kendaraan', $ticket->nomor_kendaraan)
                     ->where('nomor_kursi', $nomor_kursi)
                     ->first();
 
-        if ($seat) {
-            // Update status kursi menjadi dipesan
-            $seat->status = 'dipesan'; // Sesuaikan dengan status yang Anda gunakan
-            $seat->save();
-
-            // Berikan respons sukses
-            return response()->json(['message' => 'Seat booked successfully'], 200);
-        } else {
-            // Jika kursi tidak ditemukan, berikan respons error
-            return response()->json(['message' => 'Seat not found'], 404);
+                if (!$existingDetail) {
+                    // Jika tidak ada, buat detail_kendaraan baru
+                    DetailKendaraan::create([
+                        'user_id' => $ticket->user_id,
+                        'nomor_kendaraan' => $ticket->nomor_kendaraan,
+                        'nomor_kursi' => $nomor_kursi, // Gunakan nomor kursi yang dipisahkan
+                        'total_kursi' => $ticket->jumlah_penumpang, // Sesuaikan jumlah total kursi dengan data yang sebenarnya
+                        'kelas' => $ticket->kelas,
+                        'status' => 'pending' // Set status awal sebagai available
+                    ]);
+                }
+            }
         }
+
+        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+        return redirect()->route('admin.kendaraan_kbt')->with('success', 'Tickets synced to detail_kendaraan successfully');
     }
 }

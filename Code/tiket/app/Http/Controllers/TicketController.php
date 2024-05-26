@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DetailTiket;
 use App\Models\TicketApproval;
+use App\Models\Payment;
 use App\Models\Ticket;
 
 class TicketController extends Controller
@@ -45,15 +46,38 @@ class TicketController extends Controller
 
     public function informasi_tiket()
     {
-        $details = DetailTiket::all();
+        $details = Payment::all();
 
         return view('admin.tabel_tiket', compact('details'));
     }
 
     public function approvalTiket()
     {
-        $approvals = TicketApproval::all();
+        // Mengambil data dari tabel payments yang memiliki status pending di tabel ticket_approvals
+        $approvals = Payment::join('ticket_approvals', 'payments.id', '=', 'ticket_approvals.payment_id')
+            ->where('ticket_approvals.status', 'pending')
+            ->select('payments.*', 'ticket_approvals.status')
+            ->get();
+
         return view('admin.approval_tiket', compact('approvals'));
+    }
+
+    public function accept($id)
+    {
+        $ticketApproval = TicketApproval::where('payment_id', $id)->firstOrFail();
+        $ticketApproval->status = 'approved';
+        $ticketApproval->save();
+
+        return redirect()->route('admin.approval_tiket')->with('success', 'Tiket diterima');
+    }
+
+    public function reject($id)
+    {
+        $ticketApproval = TicketApproval::where('payment_id', $id)->firstOrFail();
+        $ticketApproval->status = 'rejected';
+        $ticketApproval->save();
+
+        return redirect()->route('admin.approval_tiket')->with('success', 'Tiket ditolak');
     }
 
     // Fungsi untuk mengedit detail tiket

@@ -17,6 +17,7 @@ class DetailKendaraan extends Model
         'nomor_kursi',
         'total_kursi',
         'kelas',
+        'status',
     ];
 
     // Define relationship with User model

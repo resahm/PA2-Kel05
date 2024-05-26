@@ -86,21 +86,15 @@ class UserTiketController extends Controller
         $ticket = Ticket::find($request->ticket_id);
 
         if ($ticket) {
-            // Ambil nomor kursi yang dikirim sebagai array
-            $nomorKursiArray = explode(',', $request->nomor_kursi);
+            // Check if the seat is already booked by another user for the same vehicle and class
+            $existingBooking = Ticket::where('nomor_kursi', $request->nomor_kursi)
+                ->where('nomor_kendaraan', $request->nomor_kendaraan)
+                ->where('kelas', $request->kelas)
+                ->where('id', '!=', $ticket->id)
+                ->first();
 
-            // Periksa apakah kursi sudah dibooking oleh pengguna lain
-            foreach ($nomorKursiArray as $kursi) {
-                $existingBooking = Ticket::where('nomor_kursi', 'LIKE', "%$kursi%")
-                    ->where('nomor_kendaraan', $request->nomor_kendaraan)
-                    ->where('kelas', $request->kelas)
-                    ->where('tanggal_keberangkatan', $ticket->tanggal_keberangkatan)
-                    ->where('waktu_keberangkatan', $ticket->waktu_keberangkatan)
-                    ->first();
-
-                if ($existingBooking) {
-                    return redirect()->back()->withErrors(['error' => "Kursi nomor $kursi sudah dibooking oleh pengguna lain."]);
-                }
+            if ($existingBooking) {
+                return redirect()->back()->withErrors(['error' => 'Kursi sudah dibooking oleh pengguna lain.']);
             }
 
             // Ambil tiket terakhir
@@ -110,6 +104,9 @@ class UserTiketController extends Controller
             $jumlahPenumpangTerdaftar = $ticket->jumlah_penumpang_terdaftar ?? 0;
 
             if ($jumlahPenumpangTerdaftar < $jumlahPenumpangMaksimum) {
+                // Ambil nomor kursi yang dikirim sebagai array
+                $nomorKursiArray = explode(',', $request->nomor_kursi);
+
                 // Periksa apakah jumlah kursi yang dipilih tidak melebihi jumlah penumpang yang tersedia
                 if (count($nomorKursiArray) + $jumlahPenumpangTerdaftar <= $jumlahPenumpangMaksimum) {
                     $ticket->update([
@@ -203,12 +200,11 @@ class UserTiketController extends Controller
         $latestTicket->metode_pembayaran = $metodePembayaran;
         $latestTicket->save();
 
-        return view('users.konfirmasi', compact('latestTicket', 'hargaTiket', 'totalHarga', 'metodePembayaran'));
+        return view('ticket_info', compact('latestTicket', 'hargaTiket', 'totalHarga', 'metodePembayaran'));
     }
     public function storeBuktiPembayaran(Request $request)
     {
         Log::info('Bukti Pembayaran Request:', $request->all());
-
         // Validasi input
         $validatedData = $request->validate([
             'ticket_id' => 'required|exists:tickets,id',

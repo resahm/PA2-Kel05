@@ -89,26 +89,26 @@
                     <div class="card-header">Isi Bukti Pembayaran</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.bukti_pembayaran') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('users.store_payment') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Name <b style="color:red;">*Masukkan sesuai nama di KTP</b></label>
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">Email <b style="color:red;">*Masukkan sesuai data saat login</b></label>
                                 <input type="text" class="form-control" id="email" name="email" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="amount" class="form-label">Jumlah Pembayaran</label>
+                                <label for="amount" class="form-label">Jumlah Pembayaran <b style="color:red;">*Masukkan sesuai total harga tiket</b></label>
                                 <input type="text" class="form-control" id="amount" name="amount" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="payment_method" class="form-label">Metode Pembayaran</label>
+                                <label for="payment_method" class="form-label">Metode Pembayaran <b style="color:red;">*Masukkan sesuai metode pembayaran</b></label>
                                 <input type="text" class="form-control" id="payment_method" name="payment_method" required>
                             </div>
 
@@ -136,6 +136,26 @@
                                 <img id="ktp_image_preview" class="preview" src="#" alt="KTP Image Preview" style="display:none;">
                             </div>
 
+                            <script>
+                                function previewImage(inputId, previewId) {
+                                    const fileInput = document.getElementById(inputId);
+                                    const previewImage = document.getElementById(previewId);
+
+                                    if (fileInput.files && fileInput.files[0]) {
+                                        const reader = new FileReader();
+
+                                        reader.onload = function(e) {
+                                            previewImage.src = e.target.result;
+                                            previewImage.style.display = 'block';
+                                        }
+
+                                        reader.readAsDataURL(fileInput.files[0]);
+                                    } else {
+                                        previewImage.src = '#';
+                                        previewImage.style.display = 'none';
+                                    }
+                                }
+                            </script>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
