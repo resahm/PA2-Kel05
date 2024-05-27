@@ -15,8 +15,6 @@
     <!-- Graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Icon -->
-
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -86,13 +84,16 @@
                                     <script>
                                         document.addEventListener("DOMContentLoaded", () => {
                                             const ctx = document.getElementById('ratingChart').getContext('2d');
-                                            const ratings =  json_encode($ratings); 
+                                            const ratings = json_encode($ratings);
 
-                                            const data = {
-                                                labels: ['1\u2605', '2\u2605', '3\u2605', '4\u2605', '5\u2605'],
+                                            const labels = ['1\u2605', '2\u2605', '3\u2605', '4\u2605', '5\u2605'];
+                                            const data = labels.map((label, index) => ratings[index + 1] || 0);
+
+                                            const chartData = {
+                                                labels: labels,
                                                 datasets: [{
-                                                    label: 'Rating Ulasan',
-                                                    data: Object.values(ratings),
+                                                    label: 'Jumlah Ulasan',
+                                                    data: data,
                                                     backgroundColor: [
                                                         'rgba(255, 99, 132, 0.2)',
                                                         'rgba(54, 162, 235, 0.2)',
@@ -131,7 +132,7 @@
 
                                             const myChart = new Chart(ctx, {
                                                 type: 'bar',
-                                                data: data,
+                                                data: chartData,
                                                 options: options
                                             });
                                         });

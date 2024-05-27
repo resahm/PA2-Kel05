@@ -46,7 +46,7 @@ class TicketController extends Controller
 
     public function informasi_tiket()
     {
-        $details = Payment::all();
+        $details = DetailTiket::all();
 
         return view('admin.tabel_tiket', compact('details'));
     }
