@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users/bukti-pembayaran', [UserPaymentController::class, 'showForm'])->name('users.bukti_pembayaran');
     Route::post('/store_payment', [UserPaymentController::class, 'store'])->name('users.store_payment');
     Route::get('users/konfirmasi', [UserPaymentController::class, 'konfirmasi'])->name('users.konfirmasi');
+    Route::get('export-excel', [UserPaymentController::class, 'exportToExcel'])->name('export.excel');
     Route::get('/users/pemesanan', [UserController::class, 'pemesanan'])->name('users.pemesanan');
     Route::get('/users/pembayaran', [UserController::class, 'pembayaran'])->name('users.pembayaran');
     Route::get('users/cek_pesanan', [UserController::class, 'cekPesanan'])->name('users.cek_pesanan');

@@ -66,6 +66,16 @@
         b {
             color: red;
         }
+
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            /* Atur jarak antara tombol-tombol */
+        }
+
+        .button-container form {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -84,12 +94,17 @@
                         <b>Tunggu Konfirmasi dari Admin KBT !</b>
                     </div>
 
-                    <div>
+                    <div class="button-container">
                         <form action="{{ asset('assets/tcpdf/tcpdf/cetak-tiket.php') }}" method="get">
                             <input type="hidden" name="id" value="{{ session('latest_ticket_id') }}">
-                            <button type="submit" class="btn btn-primary">Cetak Tiket</button>
+                            <button type="submit" class="btn btn-primary">Cetak Tiket <br>PDF</button>
+                        </form>
+                        <form action="{{ route('export.excel') }}" method="get">
+                            <input type="hidden" name="id" value="{{ session('latest_ticket_id') }}">
+                            <button type="submit" class="btn btn-primary">Cetak Tiket <br>EXCEL</button>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
