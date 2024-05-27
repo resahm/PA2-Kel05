@@ -81,19 +81,18 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Graphic Ulasan</h5>
-
-                                    <!-- Line Chart -->
-                                    <div id="reportsChart"></div>
                                     <canvas id="ratingChart" width="400" height="200"></canvas>
 
                                     <script>
                                         document.addEventListener("DOMContentLoaded", () => {
                                             const ctx = document.getElementById('ratingChart').getContext('2d');
+                                            const ratings =  json_encode($ratings); 
+
                                             const data = {
-                                                labels: ['\u2605', '\u2605\u2605', '\u2605\u2605\u2605', '\u2605\u2605\u2605\u2605', '\u2605\u2605\u2605\u2605\u2605'],
+                                                labels: ['1\u2605', '2\u2605', '3\u2605', '4\u2605', '5\u2605'],
                                                 datasets: [{
                                                     label: 'Rating Ulasan',
-                                                    data: [5, 10, 15, 20, 25],
+                                                    data: Object.values(ratings),
                                                     backgroundColor: [
                                                         'rgba(255, 99, 132, 0.2)',
                                                         'rgba(54, 162, 235, 0.2)',
@@ -111,13 +110,25 @@
                                                     borderWidth: 1
                                                 }]
                                             };
+
                                             const options = {
                                                 scales: {
                                                     y: {
-                                                        beginAtZero: true
+                                                        beginAtZero: true,
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Jumlah Ulasan'
+                                                        }
+                                                    },
+                                                    x: {
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Rating'
+                                                        }
                                                     }
                                                 }
                                             };
+
                                             const myChart = new Chart(ctx, {
                                                 type: 'bar',
                                                 data: data,
@@ -125,10 +136,8 @@
                                             });
                                         });
                                     </script>
-                                    <!-- End Line Chart -->
 
                                 </div>
-
                             </div>
                         </div><!-- End Reports -->
 

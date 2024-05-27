@@ -13,4 +13,12 @@ class UlasanController extends Controller
         $ulasans = Ulasan::all();
         return view('admin.dashboard', compact('ulasans'));
     }
+
+    public function dashboard()
+    {
+        $ulasans = Ulasan::all();
+        $ratings = $ulasans->pluck('rating')->toArray();
+
+        return view('admin.dashboard', compact('ulasans', 'ratings'));
+    }
 }

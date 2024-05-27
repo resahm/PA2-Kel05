@@ -18,6 +18,8 @@ use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserTiketController;
 use App\Http\Controllers\UserPaymentController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserUlasanController;
+
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('guest.login');
 Route::post('/', [LoginController::class, 'login'])->name('Login');
@@ -48,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/pemesanan', [UserController::class, 'pemesanan'])->name('users.pemesanan');
     Route::get('/users/pembayaran', [UserController::class, 'pembayaran'])->name('users.pembayaran');
     Route::get('users/cek_pesanan', [UserController::class, 'cekPesanan'])->name('users.cek_pesanan');
+    Route::post('/ulasan/store', [UserUlasanController::class, 'store'])->name('users.store_ulasan');
     Route::get('/users/history', [UserController::class, 'history'])->name('users.history');
     Route::get('/user-profile', [UserProfileController::class, 'index'])->name('users.user-profile');
     Route::put('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
@@ -105,5 +108,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/notify-users', [NotificationController::class, 'notifyUsers'])->name('notify.users');
 
     //Ulasan
-    Route::get('admin/dashboard', [UlasanController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [UlasanController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/ulasans', [UlasanController::class, 'index'])->name('admin.dashboard');
 });

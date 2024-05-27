@@ -18,7 +18,7 @@
                     <a class="navbar-brand" href="#"><img src="{{ url('assets/img/kbt.jpeg') }}" alt="" style="height: 100px; margin-right:30px; "></a>
                 </li>
                 <li class="nav-item flex-fill" role="presentation">
-                    <a class="nav-link w-100 ajax-link {{ request()->is('users/tiket*','users/info_pelanggan*','users/pilih_kursi*','users/terima_tiket*','users/terima-tiket*','users/bukti_pembayaran*') ? 'active' : '' }}" href="{{ route('users.tiket') }}" id="home-tab" role="tab" aria-controls="Pesan sekarang" aria-selected="true">PESAN SEKARANG</a>
+                    <a class="nav-link w-100 ajax-link {{ request()->is('users/tiket*') ? 'active' : '' }}" href="{{ route('users.tiket') }}" id="home-tab" role="tab" aria-controls="Pesan sekarang" aria-selected="true">PESAN SEKARANG</a>
                 </li>
                 <li class="nav-item flex-fill" role="presentation">
                     <a class="nav-link w-100 ajax-link {{ request()->is('users/pemesanan*','users/pembayaran*') ? 'active' : '' }}" href="{{ route('users.pemesanan') }}" id="profile-tab" role="tab" aria-controls="cara pemesanan dan pembayaran" aria-selected="false">CARA PEMESANAN &amp; PEMBAYARAN</a>
