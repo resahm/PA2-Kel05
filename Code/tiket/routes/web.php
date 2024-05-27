@@ -88,8 +88,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/admin/update_tiket/{id}', [TicketController::class, 'update'])->name('admin.update_tiket');
     Route::delete('/admin/tiket/{id}', [TicketController::class, 'destroy'])->name('admin.tiket.destroy');
     Route::get('/admin/approval_tiket', [TicketController::class, 'approvalTiket'])->name('admin.approval_tiket');
-    Route::post('/tickets/accept/{id}', [TicketController::class, 'accept'])->name('tickets.accept');
-    Route::post('/tickets/reject/{id}', [TicketController::class, 'reject'])->name('tickets.reject');
+    Route::post('/approval_tiket/{id}/accept', [TicketController::class, 'accept'])->name('admin.accept');
+    Route::post('/approval_tiket/{id}/reject', [TicketController::class, 'reject'])->name('admin.reject');
 
     // Paket Routes
     Route::get('/admin/tabel_paket', [PaketController::class, 'index'])->name('admin.tabel_paket');
