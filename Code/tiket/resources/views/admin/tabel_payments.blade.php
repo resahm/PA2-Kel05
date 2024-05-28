@@ -142,6 +142,7 @@
                             <th>Tanggal Pembayaran</th>
                             <th>Bukti Pembayaran</th>
                             <th>Foto KTP</th>
+                            <th>Status Pembayaran</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -168,6 +169,7 @@
                                 Tidak ada gambar
                                 @endif
                             </td>
+                            <td>{{ $payment->status_pembayaran }}</td>
                         </tr>
                         @endforeach
                     </tbody>

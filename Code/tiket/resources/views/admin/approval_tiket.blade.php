@@ -129,24 +129,21 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
 
-            <!-- Page Heading -->
+        <div class="container-fluid">
             <div class="container">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Data Approval Tiket</h1>
                 </div>
 
-                <!-- Tabel untuk menampilkan data -->
-
-
-                <table border="1">
+                <table>
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>ID Payment</th>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Kelas</th>
                             <th>Amount</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -156,18 +153,20 @@
                         @foreach($approvals as $key => $approval)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $approval->payment_id }}</td>
                             <td>{{ $approval->name }}</td>
                             <td>{{ $approval->email }}</td>
-                            <td>{{ $approval->amount }}</td>
+                            <td>{{ $approval->kelas }}</td>
+                            <td>{{ $approval->subtotal }}</td>
                             <td>{{ $approval->status }}</td>
                             <td>
-                                <form action="{{ route('payments.accept', $approval->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('admin.accept_ticket', $approval->id) }}" method="POST" style="display:inline;">
                                     @csrf
-                                    <button type="submit" class="btn btn-accept">Terima</button>
+                                    <button type="submit" class="btn-accept">Terima</button>
                                 </form>
-                                <form action="{{ route('payments.reject', $approval->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('admin.reject_ticket', $approval->id) }}" method="POST" style="display:inline;">
                                     @csrf
-                                    <button type="submit" class="btn btn-reject">Tolak</button>
+                                    <button type="submit" class="btn-reject">Tolak</button>
                                 </form>
                             </td>
                         </tr>
@@ -175,26 +174,24 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        </div>
-    </main>
+        </div><!-- End container-fluid -->
 
-    @include ('admin.footer')
-    <!-- End of Content Wrapper -->
+    </main><!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
-    <script src="{{ asset('assets/vendor/echarts/echarts.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/quill/quill.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
-    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main.js')}}"></script>
-
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>

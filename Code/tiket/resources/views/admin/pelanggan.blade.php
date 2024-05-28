@@ -70,7 +70,6 @@
                                         <th>Terdaftar</th>
                                         <th>Total Pembayaran</th>
                                         <th>Metode Pembayaran</th>
-                                        <th>Status Pembayaran</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,7 +89,6 @@
                                         <td>{{ $ticket->jumlah_penumpang_terdaftar }} </td>
                                         <td>{{ $ticket->subtotal }}</td>
                                         <td>{{ $ticket->metode_pembayaran }}</td>
-                                        <td>{{ $ticket->status_pembayaran }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

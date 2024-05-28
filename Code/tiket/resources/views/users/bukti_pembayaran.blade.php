@@ -103,6 +103,15 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="kelas" class="form-label">Kelas <b style="color:red;">*Masukkan sesuai data yang di berikan</b></label>
+                                <select id="kelas" name="kelas" class="form-select" required>
+                                    <option value="" disabled selected>Pilih Kelas KBT</option>
+                                    <option value="Reguler">Reguler</option>
+                                    <option value="Executive">Executive</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="amount" class="form-label">Jumlah Pembayaran <b style="color:red;">*Masukkan sesuai total harga tiket</b></label>
                                 <input type="text" class="form-control" id="amount" name="amount" required>
                             </div>

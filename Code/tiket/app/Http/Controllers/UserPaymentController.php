@@ -49,6 +49,7 @@ class UserPaymentController extends Controller
             'ticket_id' => $ticket->id,
             'name' => $request->name,
             'email' => $request->email,
+            'kelas' => $request->kelas,
             'amount' => $request->amount,
             'payment_method' => $request->payment_method,
             'payment_date' => $request->payment_date,

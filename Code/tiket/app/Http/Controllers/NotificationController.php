@@ -6,14 +6,13 @@ use App\Models\Ticket;
 use App\Models\User;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller
 {
     public function index()
     {
-        $notifications = Notification::all(); 
-        return view('admin.header', ['notifications' => $notifications]);
+        $notifications = Notification::orderBy('created_at', 'desc')->get();
+        return view('admin.header', compact('notifications'));
     }
 
     public function notifyUsers()

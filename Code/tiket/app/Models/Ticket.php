@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    protected $table = 'tickets'; 
+    protected $table = 'tickets';
 
     protected $fillable = [
         'user_id',
@@ -22,13 +22,19 @@ class Ticket extends Model
         'jumlah_penumpang_terdaftar',
         'subtotal',
         'metode_pembayaran',
-        'status_pembayaran',
     ];
 
-    // Definisikan relasi dengan model User
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class);
+    }
+    public function approval()
+    {
+        return $this->hasOne(TicketApproval::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }
-

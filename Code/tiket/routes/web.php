@@ -19,6 +19,7 @@ use App\Http\Controllers\UserTiketController;
 use App\Http\Controllers\UserPaymentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserUlasanController;
+use App\Http\Controllers\TicketApprovalController;
 
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('guest.login');
@@ -87,11 +88,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/edit_tiket/{id}', [TicketController::class, 'edit'])->name('admin.edit_tiket');
     Route::put('/admin/update_tiket/{id}', [TicketController::class, 'update'])->name('admin.update_tiket');
     Route::delete('/admin/tiket/{id}', [TicketController::class, 'destroy'])->name('admin.tiket.destroy');
-    Route::get('/admin/approval_tiket', [TicketController::class, 'approvalTiket'])->name('admin.approval_tiket');
-    Route::post('/approval_tiket/{id}/accept', [TicketController::class, 'accept'])->name('admin.accept');
-    Route::post('/approval_tiket/{id}/reject', [TicketController::class, 'reject'])->name('admin.reject');
-
-    // Paket Routes
+    Route::get('/admin/ticket-approvals', [TicketApprovalController::class, 'index'])->name('admin.approval_tiket');
+    Route::post('/admin/ticket-approvals/accept/{id}', [TicketApprovalController::class, 'acceptTicket'])->name('admin.accept_ticket');
+    Route::post('/admin/ticket-approvals/reject/{id}', [TicketApprovalController::class, 'rejectTicket'])->name('admin.reject_ticket');
     Route::get('/admin/tabel_paket', [PaketController::class, 'index'])->name('admin.tabel_paket');
     Route::post('/admin/tabel_paket', [PaketController::class, 'store'])->name('admin.tabel_paket.store');
     Route::get('/admin/payment_paket', [PaketController::class, 'paymentPaket'])->name('admin.payment_paket');
@@ -101,12 +100,13 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/kendaraan/book-seat', [KendaraanController::class, 'bookSeat'])->name('admin.bookSeat');
     Route::post('/admin/kendaraan/update-status/{id}/{status}', [KendaraanController::class, 'updateStatus'])->name('admin.updateStatus');
     Route::get('/sync-tickets', [KendaraanController::class, 'syncTicketsToDetailKendaraan']);
+
     // Payment Routes
     Route::get('admin/tabel_payments', [PaymentController::class, 'index'])->name('admin.tabel_payments');
 
     //Notifikasi
-    Route::get('/admin/header', [NotificationController::class, 'index'])->name('admin.notification');
-    Route::get('/notify-users', [NotificationController::class, 'notifyUsers'])->name('notify.users');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.header');
+    Route::post('/notifications/notify-users', [NotificationController::class, 'notifyUsers'])->name('notifications.notifyUsers');
 
     //Ulasan
     Route::get('/admin/dashboard', [UlasanController::class, 'dashboard'])->name('admin.dashboard');

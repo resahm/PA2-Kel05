@@ -13,15 +13,19 @@ class Payment extends Model
         'ticket_id',
         'name',
         'email',
+        'kelas',
         'amount',
         'payment_method',
         'payment_date',
         'payment_proof',
         'ktp_image',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 
     public function ticketApproval()
     {
-        return $this->hasOne(TicketApproval::class, 'payment_id', 'id');
+        return $this->hasOne(TicketApproval::class, 'payment_id');
     }
 }

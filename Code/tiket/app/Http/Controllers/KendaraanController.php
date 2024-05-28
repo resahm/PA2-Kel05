@@ -11,21 +11,21 @@ class KendaraanController extends Controller
 {
     public function index()
     {
-        $details = DetailKendaraan::all();
+        $details = DetailKendaraan::with('tiket')->get;
         return view('admin.kendaraan_kbt', compact('details'));
     }
 
-    public function updateStatus($id, $status)
+    public function acceptDetail($id, $status)
     {
         $detail = DetailKendaraan::find($id);
-        if (!$detail) {
-            return response()->json(['success' => false]);
-        }
-
-        $detail->status = $status;
+        $detail->status = 'accepted';
         $detail->save();
 
-        return response()->json(['success' => true]);
+        $tickets = $detail->tiket;
+        $tickets->status = 'accepted';
+        $tickets->save();
+
+        return redirect()->back()->with('success', 'Ticket accepted successfully.');
     }
 
     public function bookSeat($seatNumber)

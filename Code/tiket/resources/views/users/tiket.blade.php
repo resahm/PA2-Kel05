@@ -206,7 +206,7 @@
                                                 <option value="Parapat">Parapat</option>
                                                 <option value="Lumban Djulu">Lumban Djulu</option>
                                                 <option value="Porsea">Porsea</option>
-                                                <option value="Lubuk Pakam">Laguboti</option>
+                                                <option value="Laguboti">Laguboti</option>
                                                 <option value="Balige">Balige</option>
                                                 <option value="Siborong-borong">Siborong-borong</option>
                                                 <option value="Tarutung">Tarutung</option>
@@ -224,7 +224,7 @@
                                                 <option value="Parapat">Parapat</option>
                                                 <option value="Lumban Djulu">Lumban Djulu</option>
                                                 <option value="Porsea">Porsea</option>
-                                                <option value="Lubuk Pakam">Laguboti</option>
+                                                <option value="Laguboti">Laguboti</option>
                                                 <option value="Balige">Balige</option>
                                                 <option value="Siborong-borong">Siborong-borong</option>
                                                 <option value="Tarutung">Tarutung</option>

@@ -197,10 +197,9 @@
                             <th>User ID</th>
                             <th>Nomor Kendaraan</th>
                             <th>Nomor Kursi</th>
-                            <th>Kelas</th>
                             <th>Total Kursi</th>
+                            <th>Kelas</th>
                             <th>Status</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -213,12 +212,6 @@
                             <td>{{ $detail->kelas }}</td>
                             <td>{{ $detail->total_kursi }}</td>
                             <td>{{ $detail->status }}</td>
-                            <td>
-                                @if ($detail->status == 'pending')
-                                <button class="btn-accept" onclick="updateStatus({{ $detail->id }}, 'accepted')">Diterima</button>
-                                <button class="btn-reject" onclick="updateStatus({{ $detail->id }}, 'rejected')">Ditolak</button>
-                                @endif
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -229,45 +222,21 @@
 
     @include ('admin.footer')
     <!-- End of Content Wrapper -->
-    <script>
-        function updateStatus(id, status) {
-            fetch(`/admin/kendaraan/update-status/${id}/${status}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert('Failed to update status');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
 
-        function bookSeat(seatNumber) {
-            fetch(`/admin/kendaraan/book-seat/${seatNumber}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert('Failed to book seat');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>

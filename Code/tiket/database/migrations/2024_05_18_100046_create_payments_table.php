@@ -19,16 +19,13 @@ class CreatePaymentsTable extends Migration
             $table->string('email')->unique();
             $table->unsignedBigInteger('ticket_id');
             $table->decimal('amount', 10, 2);
+            $table->string('kelas')->nullable();
             $table->string('payment_method', 255);
             $table->dateTime('payment_date')->nullable();
-            $table->string('payment_proof', 255)->nullable(); // bukti pembayaran
-            $table->string('ktp_image', 255)->nullable(); // gambar KTP
+            $table->string('payment_proof', 255)->nullable();
+            $table->string('ktp_image', 255)->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
-
-            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
-
-            // Indexes
-            $table->index('ticket_id', 'payments_ticket_id_foreign');
         });
     }
 

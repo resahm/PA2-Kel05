@@ -4,33 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTicketApprovalsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('ticket_approvals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
             $table->string('kelas');
-            $table->DECIMAL('subtotal', 10, 2);
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->decimal('subtotal', 10, 2);
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->timestamps();
 
-            // Menambahkan kunci asing payment_id jika ada relasi dengan tabel payments
-            $table->unsignedBigInteger('payment_id')->nullable();
-            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('ticket_approvals');
     }
-};
+}
