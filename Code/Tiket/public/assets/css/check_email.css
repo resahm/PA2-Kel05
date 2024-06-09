@@ -1,0 +1,68 @@
+
+.card {
+    width: 80%;
+    max-width: 600px;
+    margin: 200px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    /* Ubah margin-top sesuai kebutuhan */
+    font-size: 2.5em;
+    /* Ubah ukuran font sesuai kebutuhan */
+    color: #333;
+}
+
+p {
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 20px;
+    /* Ubah margin-top sesuai kebutuhan */
+}
+
+.button-container {
+    display: flex;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-field2{
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+.button-container a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.button-container a:hover {
+    color: #0056b3;
+}
+
+/* Session status */
+.session-status {
+    margin-top: 20px;
+    color: green;
+}

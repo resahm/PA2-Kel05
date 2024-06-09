@@ -1,0 +1,98 @@
+/* Style for the main content */
+.main {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Style for the card */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-left: -55px
+}
+
+/* Style for the card title */
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Style for the table */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+/* Style for the table headers */
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    padding: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    color: #333;
+    background-color: #e9ecef;
+}
+
+/* Style for the table rows */
+.table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Style for the table cells */
+.table tbody td {
+    padding: 10px;
+    vertical-align: middle;
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+}
+
+/* Style for the table cells when hovered */
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Style for the table data */
+.table tbody td img {
+    max-width: 100px;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: left;
+        font-weight: 600;
+    }
+}
