@@ -21,42 +21,45 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/history.css') }}" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fc;
+        }
+    </style>
 </head>
 
 <body>
     @include('partials.header2')
 
     <main id="main" class="main">
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Payment History</h5>
-                            <table class="table datatable-history">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Amount</th>
-                                        <th>Payment Method</th>
-                                        <th>Payment Date</th>
-                                        <th>Image</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($paymentHistory as $payment)
-                                    <tr>
-                                        <td>{{ $payment->name ?? 'N/A' }}</td>
-                                        <td>{{ $payment->amount }}</td>
-                                        <td>{{ $payment->payment_method }}</td>
-                                        <td>{{ $payment->payment_date }}</td>
-                                        <td>{{ $payment->image }}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                        </div>
+        <section class="section d-flex justify-content-center">
+            <div class="col-lg-6">
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment History</h5>
+                        <table class="table datatable-history">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
+                                    <th>Payment Date</th>
+                                    <th>Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($paymentHistory as $payment)
+                                <tr>
+                                    <td>{{ $payment->name ?? 'N/A' }}</td>
+                                    <td>{{ $payment->amount }}</td>
+                                    <td>{{ $payment->payment_method }}</td>
+                                    <td>{{ $payment->payment_date }}</td>
+                                    <td>{{ $payment->image }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

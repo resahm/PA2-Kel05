@@ -26,7 +26,7 @@
                         <a class="nav-link w-100" href="{{ route('guest.login') }}">CEK PESANAN</a>
                     </li>
                     <li class="nav-item flex-fill" role="presentation">
-                        <a class="nav-link w-100" href="{{ route('guest.login') }}">LOGIN MEMBER</a>
+                        <a class="nav-link w-100" href="{{ route('guest.login') }}">LOGIN</a>
                     </li>
                 </ul>
             </div>

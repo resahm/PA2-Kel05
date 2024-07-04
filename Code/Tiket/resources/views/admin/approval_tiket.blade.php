@@ -160,6 +160,7 @@
                             <td>{{ $ticketApproval->subtotal }}</td>
                             <td>{{ $ticketApproval->status }}</td>
                             <td>
+                                @if($ticketApproval->status == 'pending')
                                 <form action="{{ route('admin.approve_ticket', $ticketApproval->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('PUT')
@@ -170,6 +171,9 @@
                                     @method('PUT')
                                     <button type="submit" class="btn-reject">Tolak</button>
                                 </form>
+                                @else
+                                <span class="text-muted">Action Completed</span>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

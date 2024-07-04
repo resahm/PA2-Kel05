@@ -8,6 +8,7 @@
     <title>Login</title>
     <link rel="icon" href="{{ asset('assets/img/kbt.png') }}" type="image/png">
     <link href="{{ asset('assets/css/tiket.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -21,9 +22,7 @@
     <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -44,7 +43,7 @@
                         {{ $errors->first() }}
                     </div>
                     @endif
-                    <form method="POST" action=" {{ route("guest.login") }} ">
+                    <form method="POST" action=" {{ route('guest.login') }} ">
                         @csrf
                         <div class="input-field">
                             <label for="email">EMAIL</label>
@@ -55,20 +54,6 @@
                             <input type="password" id="password" name="password" required>
                             <i class="password-toggle far fa-eye" onclick="togglePasswordVisibility('password')"></i>
                         </div>
-                        <script>
-                            function togglePasswordVisibility(inputId) {
-                                var passwordInput = document.getElementById(inputId);
-                                if (passwordInput.type === 'password') {
-                                    passwordInput.type = 'text';
-                                    document.querySelector('.password-toggle').classList.remove('fa-eye');
-                                    document.querySelector('.password-toggle').classList.add('fa-eye-slash');
-                                } else {
-                                    passwordInput.type = 'password';
-                                    document.querySelector('.password-toggle').classList.remove('fa-eye-slash');
-                                    document.querySelector('.password-toggle').classList.add('fa-eye');
-                                }
-                            }
-                        </script>
                         <button type="submit">LOGIN</button>
                     </form>
                     <p class="input-field2"><a href="{{ route('guest.lupa_password') }}">Lupa Password</a></p>
@@ -80,6 +65,19 @@
     @include('partials.footer')
 
     <script>
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                document.querySelector('.password-toggle').classList.remove('fa-eye');
+                document.querySelector('.password-toggle').classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                document.querySelector('.password-toggle').classList.remove('fa-eye-slash');
+                document.querySelector('.password-toggle').classList.add('fa-eye');
+            }
+        }
+
         // Ambil alert yang memiliki id 'alert'
         var alert = document.getElementById('alert');
 
@@ -92,14 +90,14 @@
     <!-- Link to Bootstrap JavaScript from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js')}}"></script>
-    <script src="{{ asset('assets/vendor/echarts/echarts.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/quill/quill.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
-    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
 </body>
 

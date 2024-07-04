@@ -1,32 +1,125 @@
-.navbar {
-    background-color: #ffffff; /* Keeps the navbar white for a clean look */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 10px 0;
+/* header.css */
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px; /* Reduced padding */
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .navbar-brand img {
-    height: 70px; /* Adjusted to a more reasonable size */
+    height: 40px; /* Further reduced height */
+    margin-right: 20px;
 }
 
-.navbar-toggler {
-    border: none;
+.nav-tabs {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 0;
 }
 
-.nav-link {
-    margin: 5px 10px; /* Adds a bit of spacing around links for better touch interaction */
-    transition: color 0.3s ease; /* Smooth transition for hover effect */
+.nav-tabs .nav-item {
+    flex-grow: 1;
+    text-align: center;
 }
 
-.nav-link:hover, .nav-link:focus {
-    color: #007bff; /* Bootstrap primary color for consistency */
+.nav-tabs .nav-item .nav-link {
+    width: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px; /* Reduced padding */
+    transition: color 0.3s, background-color 0.3s;
 }
 
-/* Improves the dropdown menu appearance */
-.dropdown-menu {
-    display: none;
-    border-radius: 0; /* Matches the more angular design language */
+.nav-tabs .nav-item .nav-link:hover {
+    color: #007bff;
+    background-color: #f1f2f6;
+    border-radius: 5px;
 }
 
-.dropdown-menu.show {
-    display: block;
+.nav-tabs .nav-item .nav-link.active {
+    background-color: #ffffff;
+    border-bottom: 2px solid #007bff;
+}
+
+.nav-profile {
+    display: flex;
+    align-items: center;
+}
+
+.nav-profile img {
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.alert {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1050;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.alert.show {
+    opacity: 1;
+}
+
+.alert.hide {
+    opacity: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .navbar-brand img {
+        height: 30px; /* Further reduced height for mobile */
+        margin-right: 0;
+    }
+
+    .nav-tabs {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .nav-tabs .nav-item {
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-tabs .nav-item .nav-link {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .nav-profile {
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .nav-profile img {
+        height: 30px; /* Adjusted for consistency */
+    }
 }

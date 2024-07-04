@@ -584,6 +584,21 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Custom Styles for Navigation
+--------------------------------------------------------------*/
+.nav-tabs .nav-item .nav-link {
+  width: 100%;
+  color: black; /* Warna teks link diubah menjadi hitam */
+  font-size: 14px; /* Ukuran font link */
+  position: relative;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  background-color: #ffffff; /* Warna latar belakang link aktif tetap putih */
+  border-bottom: 2px solid #007bff; /* Underline untuk link aktif */
+}
+
+/*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
 .sidebar {
